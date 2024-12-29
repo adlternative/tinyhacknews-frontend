@@ -48,21 +48,26 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-container">
-      <h1 className="home-title">News</h1>
       {error && <p className="error-message">Error: {error}</p>}
       <ul className="news-list">
         {news.map((item) => (
           <li key={item.id} className="news-item">
-            <h2 className="news-title">{item.title}</h2>
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="news-title-link"
+            >
+              <h2 className="news-title">{item.title}</h2>
+            </a>
             <a
               className="news-link"
               href={item.url}
               target="_blank"
-              rel="noopener noreferrer">
-                {item.url}
+              rel="noopener noreferrer"
+            >
+              {"(" + item.url + ")"}
             </a>
-            <p className="news-text">{item.text}</p>
-
           </li>
         ))}
       </ul>
