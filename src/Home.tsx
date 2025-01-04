@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import NavBar from "./NavBar"; // 导入 NavBar 组件
 
 interface NewsItem {
   id: number;
@@ -12,6 +13,7 @@ interface NewsItem {
 const Home: React.FC = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
     // 定义一个异步函数来获取数据
@@ -45,9 +47,11 @@ const Home: React.FC = () => {
     // 调用获取数据函数
     fetchNews();
   }, []); // 空依赖数组确保此效果只在组件首次挂载时运行
+  const handleLogout = async () => {};
 
   return (
     <div className="home-container">
+      <NavBar username={username} onLogout={handleLogout} />
       {error && <p className="error-message">Error: {error}</p>}
       <ul className="news-list">
         {news.map((item) => (

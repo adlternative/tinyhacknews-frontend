@@ -10,7 +10,7 @@ const Register: React.FC = () => {
   });
 
   const navigate = useNavigate();
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -54,10 +54,10 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -68,7 +68,7 @@ const Register: React.FC = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -79,7 +79,7 @@ const Register: React.FC = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
