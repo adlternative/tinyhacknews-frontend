@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Home.css";
 import NavBar from "./NavBar"; // 导入 NavBar 组件
+import { UserContext } from "./context/UserContext";
 
 interface NewsItem {
   id: number;
@@ -11,9 +12,11 @@ interface NewsItem {
 }
 
 const Home: React.FC = () => {
+  const { username } = useContext(UserContext);
+
   const [news, setNews] = useState<NewsItem[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [username, setUsername] = useState<string | null>(null);
+  // const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
     // 定义一个异步函数来获取数据
