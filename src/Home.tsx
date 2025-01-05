@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Home.css";
 import NavBar from "./NavBar"; // 导入 NavBar 组件
+import News from "./News"; // 导入 News 组件
 import { UserContext } from "./context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -79,28 +80,7 @@ const Home: React.FC = () => {
     <div className="home-container">
       <NavBar username={username} onLogout={handleLogout} />
       {error && <p className="error-message">Error: {error}</p>}
-      <ul className="news-list">
-        {news.map((item) => (
-          <li key={item.id} className="news-item">
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="news-title-link"
-            >
-              <h2 className="news-title">{item.title}</h2>
-            </a>
-            <a
-              className="news-link"
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {"(" + item.url + ")"}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <News news={news} />
     </div>
   );
 };

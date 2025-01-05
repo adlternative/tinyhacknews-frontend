@@ -1,0 +1,46 @@
+.news-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(246, 246, 239);
+  margin: 0;
+}
+
+.news-item {
+  padding: 1px;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+}
+
+.news-title {
+  margin: 0 0 10px;
+  font-size: 10pt;
+  color: #2c3e50;
+  display: inline-block;
+  text-align: center;
+}
+
+.news-link {
+  /* 灰色 */
+  color: #555;
+  font-size: 8pt;
+  display: inline-block;
+  margin-left: 1px;
+  text-align: center;
+}
+
+.news-link:hover {
+  color: #555;
+  text-decoration: underline;
+}
+
+.news-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-title-link:hover {
+  text-decoration: underline;
+}
