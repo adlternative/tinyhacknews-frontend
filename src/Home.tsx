@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Home.css";
-import NavBar from "./NavBar"; // 导入 NavBar 组件
-import News from "./News"; // 导入 News 组件
+import NavBar from "./NavBar";
+import News from "./News";
+import Footer from "./Footer";
 import { UserContext } from "./context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -81,6 +82,7 @@ const Home: React.FC = () => {
       <NavBar username={username} onLogout={handleLogout} />
       {error && <p className="error-message">Error: {error}</p>}
       <News news={news} />
+      <Footer />
     </div>
   );
 };
