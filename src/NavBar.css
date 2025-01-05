@@ -36,17 +36,6 @@
   color: black;
 }
 
-.navbar-logout {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.navbar-logout:hover {
-  text-decoration: underline;
-}
-
 .navbar-icon {
   width: 18px;
   aspect-ratio: auto 18 / 18;
@@ -64,4 +53,11 @@
 .navbar-separator {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.navbar-logout {
+  background: none;
+  border: none;
+  text-decoration: none;
+  padding: 0;
 }

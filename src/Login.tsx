@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css"; // 如果需要，可以创建相应的CSS文件
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./context/UserContext"; // 导入 UserContext
+import getUsernameFromJwt from "./utils/getUsernameFromJwt"; // 导入解析用户名的工具
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -9,6 +11,7 @@ const Login: React.FC = () => {
   });
 
   const navigate = useNavigate();
+  const { setUsername } = useContext(UserContext); // 使用 UserContext
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((prevState) => ({
@@ -39,6 +42,11 @@ const Login: React.FC = () => {
 
       console.log("Cookies:", document.cookie);
       // 登录成功后跳转到首页
+
+      // 解析 JWT 获取用户名
+      const fetchedUsername = getUsernameFromJwt();
+      setUsername(fetchedUsername); // 更新 UserContext
+
       navigate("/");
     } catch (error) {
       console.error("Error:", error);
