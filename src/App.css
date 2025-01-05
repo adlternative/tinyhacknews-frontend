@@ -4,3 +4,10 @@
   text-align: center;
   width: 85%;
 }
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* 占满 #root 的高度 */
+}
