@@ -51,7 +51,7 @@ const NavBar: React.FC = () => {
         <a href="/" className="navbar-home-link">
           <img src="/public/y18.svg" alt="Y18N Icon" className="navbar-icon" />
           <span className="navbar-title">
-            <b>Tiny Hacker News</b>
+            Tiny Hacker News
           </span>
         </a>
         {links.map((link, index) => (

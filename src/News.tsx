@@ -6,7 +6,7 @@ interface NewsItem {
   title: string;
   text: string;
   url: string;
-  // 根据你实际的 API 数据格式定义其他字段
+
 }
 
 interface Props {

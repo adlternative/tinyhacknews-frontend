@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import NavBar from "./NavBar";
 import News from "./News";
@@ -13,7 +13,6 @@ interface NewsItem {
 }
 
 const Home: React.FC = () => {
-
   const [news, setNews] = useState<NewsItem[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,7 +51,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-container">
-      <NavBar/>
+      <NavBar />
       {error && <p className="error-message">Error: {error}</p>}
       <News news={news} />
       <Footer />

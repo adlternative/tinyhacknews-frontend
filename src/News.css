@@ -29,6 +29,7 @@
   display: inline-block;
   margin-left: 1px;
   text-align: center;
+  text-decoration: none;
 }
 
 .news-link:hover {
