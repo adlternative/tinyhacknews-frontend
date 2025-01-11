@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NavBar.css";
+import { UserContext } from "./context/UserContext";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-interface NavBarProps {
-  username: string | null;
-  onLogout: () => void;
-}
+const NavBar: React.FC = () => {
+  const { username, setUsername } = useContext(UserContext);
+  const navigate = useNavigate();
 
-const NavBar: React.FC<NavBarProps> = ({ username, onLogout }) => {
   const links = [
     { label: "new", href: "/news" },
     { label: "threads", href: "/threads" },
@@ -17,6 +18,31 @@ const NavBar: React.FC<NavBarProps> = ({ username, onLogout }) => {
     { label: "jobs", href: "/jobs" },
     { label: "submit", href: "/submit" },
   ];
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/v1/users/logout",
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+
+      // 清理 jwt cookie
+      Cookies.remove("jwt");
+
+      setUsername(null); // 清除 UserContext 中的用户名
+      navigate("/login");
+    } catch (error) {
+      console.error("Error:", error);
+      // 处理错误
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -44,7 +70,7 @@ const NavBar: React.FC<NavBarProps> = ({ username, onLogout }) => {
           <>
             <span className="navbar-username">{username}</span>
             <span className="navbar-separator">|</span>
-            <button className="navbar-logout" onClick={onLogout}>
+            <button className="navbar-logout" onClick={handleLogout}>
               logout
             </button>
           </>

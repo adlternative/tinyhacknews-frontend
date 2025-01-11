@@ -6,6 +6,7 @@ import Register from "./Register";
 import Login from "./Login";
 import Home from "./Home";
 import { UserProvider } from "./context/UserContext";
+import NotFound from './NotFound';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </UserProvider>
