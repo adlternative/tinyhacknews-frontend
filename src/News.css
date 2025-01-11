@@ -45,3 +45,14 @@
 .news-title-link:hover {
   text-decoration: underline;
 }
+
+.news-content {
+  height: 10pt;
+}
+
+.news-meta {
+  font-size: 8pt;
+  color: #555;
+  display: inline-block;
+  text-align: center;
+}

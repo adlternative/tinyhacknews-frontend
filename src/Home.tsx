@@ -3,14 +3,8 @@ import "./Home.css";
 import NavBar from "./NavBar";
 import News from "./News";
 import Footer from "./Footer";
+import { NewsItem } from "./type";
 
-interface NewsItem {
-  id: number;
-  title: string;
-  text: string;
-  url: string;
-  // 根据你实际的 API 数据格式定义其他字段
-}
 
 const Home: React.FC = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -21,7 +15,7 @@ const Home: React.FC = () => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/v1/news/all?page=1&page_size=30",
+          "http://localhost:8080/api/v1/news/all?page_num=1&page_size=30",
           {
             method: "GET",
             headers: {
