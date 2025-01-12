@@ -4,18 +4,24 @@ import NavBar from "./NavBar";
 import News from "./News";
 import Footer from "./Footer";
 import { NewsItem } from "./type";
-
+import { useLocation } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const pParam = searchParams.get("p");
+  const pageNum =
+    pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
+  const defaultPageSize = 30;
 
   useEffect(() => {
     // 定义一个异步函数来获取数据
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/v1/news/all?page_num=1&page_size=30",
+          `http://localhost:8080/api/v1/news/all?page_num=${pageNum}&page_size=${defaultPageSize}`,
           {
             method: "GET",
             headers: {
