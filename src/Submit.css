@@ -1,0 +1,54 @@
+.submit-container {
+  background-color: rgb(246, 246, 239);
+  margin-top: 10px;
+}
+
+.submit-news-form {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 7% 1fr 1fr; /* 标签占20%，输入框占剩余空间 */
+  row-gap: 1em; /* 行间距 */
+  column-gap: 1em; /* 列间距 */
+  align-items: center; /* 垂直居中对齐 */
+  margin-top: 10px;
+}
+
+.submit-news-label {
+  grid-column: 1; /* 将按钮放在第一列 */
+
+  color: #555;
+  font-size: 10pt;
+}
+
+.submit-news-input,
+.submit-news-input-textarea {
+  font-size: 10pt;
+  padding: 5px;
+  width: 100%;
+  grid-column: 2 / 3; /* 将按钮放在第二列 */
+}
+
+.submit-news-input-textarea {
+  height: 100px;
+}
+
+.submit-news-button {
+  grid-column: 2 / 3; /* 将按钮放在第二列 */
+  justify-self: start; /* 根据需要调整对齐方式 */
+  background-color: #ff6600;
+  color: white;
+  font-size: 10pt;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 80px;
+}
+
+.submit-news-hit {
+  grid-column: 2 / 4; /* 将按钮放在第二列 */
+  justify-self: start; /* 根据需要调整对齐方式 */
+  color: #555;
+  font-size: 10pt;
+  margin-bottom: 10px;
+}

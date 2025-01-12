@@ -22,7 +22,7 @@ const NavBar: React.FC = () => {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/v1/users/logout",
+        "/api/v1/users/logout",
         {
           method: "POST",
           credentials: "include",

@@ -21,7 +21,7 @@ const Home: React.FC = () => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/v1/news/all?page_num=${pageNum}&page_size=${defaultPageSize}`,
+          `/api/v1/news/all?page_num=${pageNum}&page_size=${defaultPageSize}`,
           {
             method: "GET",
             headers: {
