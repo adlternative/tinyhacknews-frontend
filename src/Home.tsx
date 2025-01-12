@@ -53,7 +53,7 @@ const Home: React.FC = () => {
     <div className="home-container">
       <NavBar />
       {error && <p className="error-message">Error: {error}</p>}
-      <News news={news} />
+      <News news={news} currentPage={pageNum}/>
       <Footer />
     </div>
   );

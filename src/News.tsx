@@ -1,13 +1,14 @@
 import React from "react";
 import "./News.css";
 import { NewsItem } from "./type";
-import relativeTimeFromISOString  from "./utils/relativeTimeFromISOString";
+import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 
 interface Props {
   news: NewsItem[];
+  currentPage: number;
 }
 
-const News: React.FC<Props> = ({ news }) => {
+const News: React.FC<Props> = ({ news, currentPage }) => {
   return (
     <div className="news-container">
       <ul className="news-list">
@@ -41,6 +42,9 @@ const News: React.FC<Props> = ({ news }) => {
           </li>
         ))}
       </ul>
+
+      {/* 灰色的 More 展示下一页的链接 */}
+      <a className="news-more" href={`/news?p=${currentPage + 1}`}>More</a>
     </div>
   );
 };
