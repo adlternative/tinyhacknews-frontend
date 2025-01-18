@@ -17,12 +17,18 @@ label {
   font-weight: bold;
 }
 
-input {
+.form-group input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .register-button {

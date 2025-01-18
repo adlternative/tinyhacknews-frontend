@@ -14,3 +14,12 @@ export interface NewsItem {
     url: string;
     text: string;
 }
+
+export interface UserInfo {
+    id: number;
+    name: string;
+    email: string;
+    about: string;
+    createdAt: string;
+    karma: number;
+}

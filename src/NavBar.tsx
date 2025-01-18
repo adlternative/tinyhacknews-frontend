@@ -64,7 +64,7 @@ const NavBar: React.FC = () => {
         {username ? (
           <>
             <a
-              href={`/users?id=${encodeURIComponent(username)}`}
+              href={`/users?name=${encodeURIComponent(username)}`}
               className="navbar-username"
             >
               {username}

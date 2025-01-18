@@ -10,11 +10,12 @@ interface JwtPayload {
 
 /**
  * 从指定名称的 Cookie 中提取用户名。
- * @returns 用户名字符串或 null
+ * @returns 返回一个 Promise，解析为用户名字符串或 null
  */
-const getUsernameFromJwt = (): string | null => {
+const getUsernameFromJwt = async (): Promise<string | null> => {
   // 替换为你的 JWT Cookie 名称，例如 'jwt' 或 'authToken'
   const token = Cookies.get("jwt");
+
   if (!token) {
     console.warn("在 cookies 中未找到 JWT token。");
     return null;

@@ -8,6 +8,7 @@ import Home from "./Home";
 import Submit from "./Submit";
 import { UserProvider } from "./context/UserContext";
 import NotFound from "./NotFound";
+import User from "./User";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/news" element={<Home />} />
           <Route path="/submit" element={<Submit />} />
+          <Route path="/users" element={<User />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

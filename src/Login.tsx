@@ -44,7 +44,7 @@ const Login: React.FC = () => {
       // 登录成功后跳转到首页
 
       // 解析 JWT 获取用户名
-      const fetchedUsername = getUsernameFromJwt();
+      const fetchedUsername = await getUsernameFromJwt();
       setUsername(fetchedUsername); // 更新 UserContext
 
       navigate("/");
