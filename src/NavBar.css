@@ -18,25 +18,25 @@
   display: flex;
   align-items: center;
   padding-right: 4px;
+  color: inherit;
 }
 
 .navbar-title {
-  color: black;
   /* 加粗 */
   font-weight: bold;
   margin-left: 5px;
   margin-right: 5px;
   text-decoration: none;
+  color: inherit;
 }
 
 .navbar-link {
-  color: black;
   text-decoration: none;
+  color: inherit;
 }
 
 .navbar-link:hover {
   text-decoration: none;
-  color: black;
 }
 
 .navbar-icon {
@@ -44,7 +44,6 @@
   aspect-ratio: auto 18 / 18;
   height: 18px;
   border: 1px black solid;
-  /* display: block; */
 }
 
 .navbar-home-link {
@@ -52,6 +51,7 @@
   align-items: center;
   padding-right: 5px;
   text-decoration: none;
+  color: inherit;
 }
 
 .navbar-separator {
@@ -63,5 +63,11 @@
   background: none;
   border: none;
   text-decoration: none;
-  padding: 0;
+}
+
+.navbar-username {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: inherit;
 }

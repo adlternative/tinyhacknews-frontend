@@ -21,13 +21,10 @@ const NavBar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(
-        "/api/v1/users/logout",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      const response = await fetch("/api/v1/users/logout", {
+        method: "POST",
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error("Logout failed");
@@ -50,9 +47,7 @@ const NavBar: React.FC = () => {
         {/* 包装图标和标题，使其都可点击跳转到首页 */}
         <a href="/" className="navbar-home-link">
           <img src="/public/y18.svg" alt="Y18N Icon" className="navbar-icon" />
-          <span className="navbar-title">
-            Tiny Hacker News
-          </span>
+          <span className="navbar-title">Tiny Hacker News</span>
         </a>
         {links.map((link, index) => (
           <React.Fragment key={index}>
@@ -68,7 +63,12 @@ const NavBar: React.FC = () => {
       <div className="navbar-right">
         {username ? (
           <>
-            <span className="navbar-username">{username}</span>
+            <a
+              href={`/users?id=${encodeURIComponent(username)}`}
+              className="navbar-username"
+            >
+              {username}
+            </a>
             <span className="navbar-separator">|</span>
             <button className="navbar-logout" onClick={handleLogout}>
               logout
