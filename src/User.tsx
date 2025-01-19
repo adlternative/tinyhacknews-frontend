@@ -25,6 +25,9 @@ const User: React.FC = () => {
   const [updateStatus, setUpdateStatus] = useState<string | null>(null);
   const [updating, setUpdating] = useState<boolean>(false);
 
+  // Determine if the viewed profile is the current user's profile
+  const isOwnProfile = nameParam === username;
+
   useEffect(() => {
     if (userLoading) return;
 
@@ -38,7 +41,7 @@ const User: React.FC = () => {
         console.log("nameParam", nameParam);
         console.log("username", username);
 
-        if (nameParam === username) {
+        if (isOwnProfile) {
           // If the name parameter is the same as the current username, call /api/v1/users/me
           response = await axios.get("/api/v1/users/me", {
             headers: {
@@ -75,7 +78,7 @@ const User: React.FC = () => {
       setError("Username parameter not provided.");
       setLoading(false);
     }
-  }, [nameParam, username, userLoading]);
+  }, [nameParam, username, userLoading, isOwnProfile]);
 
   const updateUser = async () => {
     if (!userData) return;
@@ -138,24 +141,32 @@ const User: React.FC = () => {
 
             <div className="info-row">
               <label htmlFor="about">about:</label>
-              <textarea
-                id="about"
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-              />
+              {isOwnProfile ? (
+                <textarea
+                  id="about"
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                />
+              ) : (
+                <p className="about-text">
+                  {userData.about || "No about information provided."}
+                </p>
+              )}
             </div>
 
-            <div className="info-row">
-              <label htmlFor="email">email:</label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            {isOwnProfile && (
+              <div className="info-row">
+                <label htmlFor="email">email:</label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            )}
 
-            {updateStatus && (
+            {isOwnProfile && updateStatus && (
               <div
                 className={`update-status ${
                   updateStatus.includes("successfully") ? "success" : "error"
@@ -165,13 +176,15 @@ const User: React.FC = () => {
               </div>
             )}
 
-            <button
-              className="update-button"
-              onClick={updateUser}
-              disabled={updating}
-            >
-              update
-            </button>
+            {isOwnProfile && (
+              <button
+                className="update-button"
+                onClick={updateUser}
+                disabled={updating}
+              >
+                {updating ? "Updating..." : "Update"}
+              </button>
+            )}
           </div>
         )}
       </div>

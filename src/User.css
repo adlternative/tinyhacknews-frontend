@@ -14,39 +14,50 @@
 .info-row {
   display: flex;
   align-items: baseline;
-}
-
-.info-row label {
-  width: 10%;
-  /* 文字左对齐 */
   text-align: left;
 }
 
+.info-row label {
+  width: 15%;
+  /* Ensure labels have more space */
+  text-align:inherit;
+}
+
 .info-row span {
+  text-align:inherit;
 }
 
 .info-row textarea,
 .info-row input {
   border: 1px solid #ccc;
-  border-radius: 1px;
-  width: 60%;
+  border-radius: 4px;
+  width: 50%;
   font-size: 15px;
+  padding: 5px;
 }
 
 .info-row textarea {
   height: 80px;
+  resize: vertical;
 }
+
+.about-text {
+  font-size: 15px;
+  border-radius: 4px;
+}
+
 .update-button {
   color: black;
   border: 1px solid black;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
   background-color: rgb(250, 240, 240);
   width: 55px;
   font-size: 14px;
-  /* 让按钮中的文字上下左右居中 */
+  /* Center the text wihin the button */
   text-align: center;
   line-height: 20px;
+  margin-top: 10px;
 }
 
 .update-button:disabled {
