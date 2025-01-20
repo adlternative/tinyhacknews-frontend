@@ -6,7 +6,7 @@
   margin: 0;
 }
 
-.news-item {
+.news-list-item {
   padding: 1px;
   /* border: 1px solid #ddd; */
   border-radius: 5px;
@@ -17,7 +17,7 @@
   justify-content: flex-start;
 }
 
-.news-title {
+.news-list-item-title {
   margin: 0 0 10px;
   font-size: 10pt;
   color: #2c3e50;
@@ -25,7 +25,7 @@
   text-align: center;
 }
 
-.news-link {
+.news-list-item-link {
   /* 灰色 */
   color: #555;
   font-size: 8pt;
@@ -35,17 +35,17 @@
   text-decoration: none;
 }
 
-.news-link:hover {
+.news-list-item-link:hover {
   color: #555;
   text-decoration: underline;
 }
 
-.news-title-link {
+.news-list-title-link {
   text-decoration: none;
   color: inherit;
 }
 
-.news-title-link:hover {
+.news-list-title-link:hover {
   text-decoration: underline;
 }
 
@@ -53,18 +53,18 @@
   height: 15px;
 }
 
-.news-meta {
+.news-list-item-meta {
   font-size: 8pt;
   color: #555;
   display: inline-block;
   text-align: center;
 }
 
-.news-container {
+.news-list-container {
   background-color: rgb(246, 246, 239);
 }
 
-.news-more {
+.news-list-more {
   margin-top: 10px;
   /* 颜色：灰色 */
   color: #555;
@@ -73,7 +73,7 @@
   text-decoration: none;
 }
 
-.news-number {
+.news-list-number {
   color: #555;
   font-size: 10pt;
   display: inline-block;

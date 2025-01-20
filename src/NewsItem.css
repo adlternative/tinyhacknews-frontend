@@ -7,12 +7,10 @@
 }
 
 /* Main content area */
-.item-container {
+.news-item-container {
   flex: 1;
   padding: 20px;
   background-color: rgb(246, 246, 239); /* Updated background color */
-  border: 1px solid #ddd;
-  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
@@ -54,18 +52,14 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
-  font-size: 14px;
+  font-size: 12px;
   color: #555;
 }
 
 .news-meta span,
 .news-meta a {
-  margin-right: 8px;
-}
-
-.news-meta a {
-  color: #007bff;
-  text-decoration: none;
+  margin-right: 4px;
+  margin-left: 4px;
 }
 
 .news-meta a:hover {
@@ -148,49 +142,4 @@
 .comments-list {
   list-style: none;
   padding: 0;
-}
-
-/* Single Comment */
-.comment-item {
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  background-color: #fff;
-  border: 1px solid #ececec;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-/* Comment Header */
-.comment-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: baseline;
-  margin-bottom: 8px;
-}
-
-.comment-author {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.comment-date {
-  font-size: 0.85em;
-  color: #7f8c8d;
-}
-
-/* Comment Text */
-.comment-text {
-  font-size: 1em;
-  line-height: 1.6;
-  color: #34495e;
-  white-space: pre-wrap; /* Preserve line breaks */
-}
-
-/* Child Comments Container */
-.comment-children {
-  margin-left: 30px;
-  margin-top: 10px;
-  border-left: 2px solid #ecf0f1;
-  padding-left: 15px;
 }

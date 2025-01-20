@@ -9,7 +9,7 @@ import Submit from "./Submit";
 import { UserProvider } from "./context/UserContext";
 import NotFound from "./NotFound";
 import User from "./User";
-import Item from "./Item";
+import NewsItem from "./NewsItem";
 
 const App: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const App: React.FC = () => {
           <Route path="/news" element={<Home />} />
           <Route path="/submit" element={<Submit />} />
           <Route path="/users" element={<User />} />
-          <Route path="/item" element={<Item />} />
+          <Route path="/item" element={<NewsItem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

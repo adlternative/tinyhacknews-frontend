@@ -1,24 +1,24 @@
 import React from "react";
-import "./News.css";
-import { NewsItem } from "./type";
+import "./NewsList.css";
+import { NewsListItem } from "./type";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 
 interface Props {
-  news: NewsItem[];
+  news: NewsListItem[];
   currentPage: number;
 }
 
-const News: React.FC<Props> = ({ news, currentPage }) => {
+const NewsList: React.FC<Props> = ({ news, currentPage }) => {
   const handleVote = (id: number) => {
     console.log(`Voted for ${id}`);
   };
 
   return (
-    <div className="news-container">
+    <div className="news-list-container">
       <ul className="news-list">
         {news.map((item, index) => (
-          <li key={item.id} className="news-item">
-            <span className="news-number">
+          <li key={item.id} className="news-list-item">
+            <span className="news-list-number">
               {(currentPage - 1) * 30 + index + 1}.
             </span>
             <button
@@ -38,12 +38,12 @@ const News: React.FC<Props> = ({ news, currentPage }) => {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="news-title-link"
+                  className="news-list-title-link"
                 >
-                  <h2 className="news-title">{item.title}</h2>
+                  <h2 className="news-list-item-title">{item.title}</h2>
                 </a>
                 <a
-                  className="news-link"
+                  className="news-list-item-link"
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -51,12 +51,12 @@ const News: React.FC<Props> = ({ news, currentPage }) => {
                   {`(${item.url})`}
                 </a>
               </div>
-              <div className="news-meta">
+              <div className="news-list-item-meta">
                 <span> 0 points </span>
                 <span> by {item.author.name} </span>
                 <span> {relativeTimeFromISOString(item.updatedAt)} </span>
                 <span> | hide | </span>
-                <span> 0 comments </span>
+                <a href={`/item?id=${item.id}`}>0 comments</a>
               </div>
             </div>
           </li>
@@ -64,11 +64,11 @@ const News: React.FC<Props> = ({ news, currentPage }) => {
       </ul>
 
       {/* 灰色的 More 展示下一页的链接 */}
-      <a className="news-more" href={`/news?p=${currentPage + 1}`}>
+      <a className="news-list-more" href={`/news?p=${currentPage + 1}`}>
         More
       </a>
     </div>
   );
 };
 
-export default News;
+export default NewsList;

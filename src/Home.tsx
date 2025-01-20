@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import NavBar from "./NavBar";
-import News from "./News";
+import NewsList from "./NewsList";
 import Footer from "./Footer";
-import { NewsItem } from "./type";
+import { NewsListItem } from "./type";
 import { useLocation } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<NewsListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
     <div className="home-container">
       <NavBar />
       {error && <p className="error-message">Error: {error}</p>}
-      <News news={news} currentPage={pageNum}/>
+      <NewsList news={news} currentPage={pageNum}/>
       <Footer />
     </div>
   );
