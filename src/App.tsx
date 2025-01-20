@@ -10,6 +10,9 @@ import { UserProvider } from "./context/UserContext";
 import NotFound from "./NotFound";
 import User from "./User";
 import NewsItem from "./NewsItem";
+import Ask from "./Ask";
+import Show from "./Show";
+import Jobs from "./Jobs";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +26,9 @@ const App: React.FC = () => {
           <Route path="/submit" element={<Submit />} />
           <Route path="/users" element={<User />} />
           <Route path="/item" element={<NewsItem />} />
+          <Route path="/ask" element={<Ask />} />
+          <Route path="/show" element={<Show />} />
+          <Route path="/jobs" element={<Jobs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
