@@ -1,7 +1,7 @@
 // src/components/CommentItem.tsx
 import React, { useState } from "react";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import { Comment } from "./type"; // Import the Comment interface
+import { Comment } from "./types"; // Import the Comment interface
 import "./CommentItem.css"; // Optional: Separate CSS for CommentItem
 
 interface CommentItemProps {
@@ -73,7 +73,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, addComment }) => {
           {error && <div className="error">{error}</div>}
           <div className="reply-buttons">
             <button onClick={handleReply} disabled={submitting}>
-              {submitting ? "Submitting..." : "Submit"}
+              Submit
             </button>
             <button onClick={handleCancel} disabled={submitting}>
               Cancel

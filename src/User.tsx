@@ -4,7 +4,7 @@ import axios from "axios";
 import { UserContext } from "./context/UserContext";
 import NavBar from "./NavBar";
 
-import { UserInfo } from "./type";
+import { UserInfo } from "./types";
 import "./User.css";
 import { FormatDate } from "./utils/dateUtils";
 

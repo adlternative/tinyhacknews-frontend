@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";
-import { Comment, News, ApiResponse } from "./type";
+import { Comment, News, ApiResponse } from "./types";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -166,13 +166,15 @@ const NewsItem: React.FC = () => {
             addedComment.parentCommentId === null ||
             addedComment.parentCommentId === undefined
           ) {
-            // 根评论
+            // 根评论直接添加
             return [...prevComments, addedComment];
           } else {
-            // 子评论
+            let didChange = false;
+
             const addChild = (commentsList: Comment[]): Comment[] => {
               return commentsList.map((comment) => {
                 if (comment.id === addedComment.parentCommentId) {
+                  didChange = true;
                   return {
                     ...comment,
                     children: comment.children
@@ -180,16 +182,21 @@ const NewsItem: React.FC = () => {
                       : [addedComment],
                   };
                 } else if (comment.children && comment.children.length > 0) {
-                  return {
-                    ...comment,
-                    children: addChild(comment.children),
-                  };
-                } else {
-                  return comment;
+                  const newChildren = addChild(comment.children);
+                  if (newChildren !== comment.children) {
+                    didChange = true;
+                    return {
+                      ...comment,
+                      children: newChildren,
+                    };
+                  }
                 }
+                return comment; // 保持不变，避免引用变化
               });
             };
-            return addChild(prevComments);
+
+            const newComments = addChild(prevComments);
+            return didChange ? newComments : prevComments;
           }
         });
 
@@ -219,7 +226,7 @@ const NewsItem: React.FC = () => {
   // Handle adding a root comment
   const handleAddComment = async () => {
     try {
-      await addComment(newComment, undefined);
+      await addComment(newComment);
     } catch (error: any) {
       setSubmitError(error.message);
     }
@@ -285,7 +292,7 @@ const NewsItem: React.FC = () => {
               ></textarea>
               {submitError && <div className="error">{submitError}</div>}
               <button onClick={handleAddComment} disabled={submitting}>
-                {submitting ? "Submitting..." : "Add Comment"}
+                Add Comment
               </button>
             </div>
 

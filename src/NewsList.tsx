@@ -1,6 +1,6 @@
 import React from "react";
 import "./NewsList.css";
-import { NewsListItem } from "./type";
+import { NewsListItem } from "./types";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 
 interface Props {

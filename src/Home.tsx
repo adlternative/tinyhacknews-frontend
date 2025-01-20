@@ -3,7 +3,7 @@ import "./Home.css";
 import NavBar from "./NavBar";
 import NewsList from "./NewsList";
 import Footer from "./Footer";
-import { NewsListItem } from "./type";
+import { NewsListItem } from "./types";
 import { useLocation } from "react-router-dom";
 
 const Home: React.FC = () => {

@@ -1,13 +1,14 @@
+// 新闻列表项
 export interface NewsListItem {
   id: number;
-  author: Author;
+  author: AuthorMeta;
   createdAt: string;
   updatedAt: string;
   title: string;
   url: string;
-  text: string;
 }
 
+// 用户信息
 export interface UserInfo {
   id: number;
   name: string;
@@ -17,17 +18,16 @@ export interface UserInfo {
   karma: number;
 }
 
-
-export interface Author {
+// 简化的用户信息
+export interface AuthorMeta {
   id: number;
   name: string;
-  createdAt: string;
-  about: string | null;
 }
 
+// 评论
 export interface Comment {
   id: number;
-  author: Author;
+  author: AuthorMeta;
   text: string;
   newsId: number;
   parentCommentId: number | null;
@@ -36,9 +36,10 @@ export interface Comment {
   children?: Comment[]; // For nested comments
 }
 
+// 新闻内容
 export interface News {
   id: number;
-  author: Author;
+  author: AuthorMeta;
   createdAt: string;
   updatedAt: string;
   title: string;
@@ -48,6 +49,7 @@ export interface News {
   commentsCount: number;
 }
 
+// 分页接口返回值
 export interface ApiResponse {
   records: Comment[];
   total: number;
