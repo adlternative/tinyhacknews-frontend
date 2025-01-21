@@ -13,6 +13,7 @@ import NewsItem from "./NewsItem";
 import Ask from "./Ask";
 import Show from "./Show";
 import Jobs from "./Jobs";
+import CommentListPage from "./CommentListPage";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/ask" element={<Ask />} />
           <Route path="/show" element={<Show />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/comments" element={<CommentListPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

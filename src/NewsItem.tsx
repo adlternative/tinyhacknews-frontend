@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";
-import { Comment, News, ApiResponse } from "./types";
+import { Comment, News, NewsCommentsResponse } from "./types";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -97,7 +97,7 @@ const NewsItem: React.FC = () => {
     setLoadingComments(true);
     setErrorComments(null);
     try {
-      const response = await axios.get<ApiResponse>(
+      const response = await axios.get<NewsCommentsResponse>(
         `/api/v1/news/${id}/comments`,
         {
           params: {

@@ -36,6 +36,20 @@ export interface Comment {
   children?: Comment[]; // For nested comments
 }
 
+export interface NewsMeta {
+  id: number;
+  title: string;
+  url: string;
+  author: AuthorMeta;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// 继承 Comment + NewMeta
+export interface CommentWithNewsMeta extends Comment {
+  newsMeta: NewsMeta;
+}
+
 // 新闻内容
 export interface News {
   id: number;
@@ -50,11 +64,24 @@ export interface News {
 }
 
 // 分页接口返回值
-export interface ApiResponse {
+export interface NewsCommentsResponse {
   records: Comment[];
   total: number;
   size: number;
   current: number;
   pages: number;
   // Add other fields if needed
+}
+
+export interface CommentListResponse {
+  records: CommentWithNewsMeta[];
+  total: number;
+  size: number;
+  current: number;
+  orders: any[];
+  optimizeCountSql: boolean;
+  searchCount: boolean;
+  countId: number | null;
+  maxLimit: number | null;
+  pages: number;
 }

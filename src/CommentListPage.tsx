@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from "react";
+import "./CommentListPage.css";
+import CommentList from "./CommentList";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
+import { CommentWithNewsMeta } from "./types";
+import { useLocation } from "react-router-dom";
+
+const CommentListPage: React.FC = () => {
+  const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const pParam = searchParams.get("p");
+  const pageNum =
+    pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
+    const pageSize = 30;
+
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await fetch(
+          `/api/v1/comments/all?page_num=${pageNum}&page_size=${pageSize}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch comments: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setComments(data.records);
+        setError(null);
+      } catch (err: any) {
+        console.error("Error:", err);
+        setError(err.message || "Something went wrong");
+      }
+    };
+
+    fetchComments();
+  }, []);
+
+  return (
+    <div className="comment-list-page-container">
+      <NavBar />
+      {error && <p className="error-message">Error: {error}</p>}
+      <CommentList comments={comments} currentPage={pageNum} />
+      <Footer />
+    </div>
+  );
+};
+
+export default CommentListPage;
