@@ -13,6 +13,14 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
     console.log(`Voted for ${id}`);
   };
 
+  const getNextPageUrl = () => {
+    let url = new URL(window.location.href);
+    let params = new URLSearchParams(url.search.slice(1));
+    params.set("p", String(currentPage + 1));
+    url.search = params.toString();
+    return url.toString();
+  };
+
   return (
     <div className="news-list-container">
       <ul className="news-list">
@@ -26,11 +34,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
               onClick={() => handleVote(item.id)}
               aria-label={`Vote for ${item.title}`}
             >
-              <img
-                src="triangle.svg"
-                alt="Vote"
-                className="vote-triangle"
-              />
+              <img src="triangle.svg" alt="Vote" className="vote-triangle" />
             </button>
             <div className="news-content-with-meta">
               <div className="news-content">
@@ -64,7 +68,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
       </ul>
 
       {/* 灰色的 More 展示下一页的链接 */}
-      <a className="news-list-more" href={`/news?p=${currentPage + 1}`}>
+      <a className="news-list-more" href={getNextPageUrl()}>
         More
       </a>
     </div>
