@@ -24,9 +24,6 @@ const Footer: React.FC = () => {
         <a href="/faq">FAQ</a>
         <a href="/lists">Lists</a>
         <a href="/api">API</a>
-        <a href="/security">Security</a>
-        <a href="/legal">Legal</a>
-        <a href="/apply">Apply to YC</a>
         <a href={`mailto:${email}`}>Contact</a>
       </div>
       <div className="footer-search">
