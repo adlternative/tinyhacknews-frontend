@@ -7,6 +7,7 @@ import "./Footer.css";
 const Footer: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const email = "adlterantive@gmail.com";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
         <a href="/security">Security</a>
         <a href="/legal">Legal</a>
         <a href="/apply">Apply to YC</a>
-        <a href="/contact">Contact</a>
+        <a href={`mailto:${email}`}>Contact</a>
       </div>
       <div className="footer-search">
         <span>Search:</span>
