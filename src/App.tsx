@@ -15,7 +15,7 @@ import Show from "./Show";
 import Jobs from "./Jobs";
 import CommentListPage from "./CommentListPage";
 import ThreadsPage from "./ThreadsPage";
-
+import FrontPage from "./FrontPage"; // 新增引入
 const App: React.FC = () => {
   return (
     <UserProvider>
@@ -33,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/comments" element={<CommentListPage />} />
           <Route path="/threads" element={<ThreadsPage />} />
+          <Route path='/front' element={<FrontPage />} /> {/* 新增路由 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
