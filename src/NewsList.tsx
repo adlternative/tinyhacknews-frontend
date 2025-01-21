@@ -27,7 +27,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
               aria-label={`Vote for ${item.title}`}
             >
               <img
-                src="public/triangle.svg"
+                src="triangle.svg"
                 alt="Vote"
                 className="vote-triangle"
               />

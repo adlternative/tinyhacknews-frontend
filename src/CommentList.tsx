@@ -24,7 +24,7 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
               aria-label={`Vote for ${comment.text}`}
             >
               <img
-                src="public/triangle.svg"
+                src="triangle.svg"
                 alt="Vote"
                 className="vote-triangle"
               />

@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
       <div className="navbar-left">
         {/* 包装图标和标题，使其都可点击跳转到首页 */}
         <a href="/" className="navbar-home-link">
-          <img src="/public/y18.svg" alt="Y18N Icon" className="navbar-icon" />
+          <img src="/y18.svg" alt="Y18N Icon" className="navbar-icon" />
           <span className="navbar-title">Tiny Hacker News</span>
         </a>
         {links.map((link, index) => (
