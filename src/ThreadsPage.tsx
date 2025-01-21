@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from "react";
+import "./ThreadsPage.css";
+import CommentList from "./CommentList";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
+import { CommentWithNewsMeta } from "./types";
+import { useLocation } from "react-router-dom";
+
+const ThreadsPage: React.FC = () => {
+  const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const username = searchParams.get("id");
+
+  // 提取分页参数
+  const pParam = searchParams.get("p");
+  const pageNum =
+    pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
+
+  const pageSize = 30;
+
+  useEffect(() => {
+    if (!username) {
+      setError("Username must be specified.");
+      return;
+    }
+
+    const fetchComments = async () => {
+      try {
+        const response = await fetch(
+          `/api/v1/comments/all?user_name=${username}&page_num=${pageNum}&page_size=${pageSize}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch comments: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setComments(data.records);
+        setError(null);
+      } catch (err: any) {
+        console.error("Error:", err);
+        setError(err.message || "Something went wrong");
+      }
+    };
+
+    fetchComments();
+  }, [username]);
+
+  return (
+    <div className="threads-page-container">
+      <NavBar />
+      {error && <p className="error-message">Error: {error}</p>}
+      {!error && <CommentList comments={comments} currentPage={pageNum} />}
+      <Footer />
+    </div>
+  );
+};
+
+export default ThreadsPage;

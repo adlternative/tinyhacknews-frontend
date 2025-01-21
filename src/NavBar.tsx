@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
 
   const links = [
     { label: "new", href: "/news" },
-    { label: "threads", href: "/threads" },
+    { label: "threads", href: `/threads?id=${username}` },
     { label: "past", href: "/past" },
     { label: "comments", href: "/comments" },
     { label: "ask", href: "/ask" },

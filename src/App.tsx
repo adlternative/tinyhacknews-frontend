@@ -14,6 +14,7 @@ import Ask from "./Ask";
 import Show from "./Show";
 import Jobs from "./Jobs";
 import CommentListPage from "./CommentListPage";
+import ThreadsPage from "./ThreadsPage";
 
 const App: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const App: React.FC = () => {
           <Route path="/show" element={<Show />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/comments" element={<CommentListPage />} />
+          <Route path="/threads" element={<ThreadsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
