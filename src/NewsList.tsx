@@ -2,6 +2,7 @@ import React from "react";
 import "./NewsList.css";
 import { NewsListItem } from "./types";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
+import getPureURI from "./utils/uri";
 
 interface Props {
   news: NewsListItem[];
@@ -53,7 +54,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {`(${item.url})`}
+                {`(` + getPureURI(item.url) + `)`}
               </a>
             </div>
             <div className="news-list-item-meta">

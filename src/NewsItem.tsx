@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";
 import { Comment, News, NewsCommentsResponse } from "./types";
+import getPureURI from "./utils/uri";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -258,7 +259,7 @@ const NewsItem: React.FC = () => {
                 rel="noopener noreferrer"
                 className="news-url-small"
               >
-                ({news.url})
+                ({getPureURI(news.url)})
               </a>
             </div>
 
