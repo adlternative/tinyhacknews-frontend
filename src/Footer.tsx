@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
         <a href="/guidelines">Guidelines</a>
         <a href="/faq">FAQ</a>
         <a href="/lists">Lists</a>
-        <a href="/api">API</a>
+        <a href="/api/v1/swagger/swagger-ui/index.html">API</a>
         <a href={`mailto:${email}`}>Contact</a>
       </div>
       <div className="footer-search">
