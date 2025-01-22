@@ -22,7 +22,6 @@ const Footer: React.FC = () => {
       <div className="footer-links">
         <a href="/guidelines">Guidelines</a>
         <a href="/faq">FAQ</a>
-        <a href="/lists">Lists</a>
         <a href="/api/v1/swagger/swagger-ui/index.html">API</a>
         <a href={`mailto:${email}`}>Contact</a>
       </div>
