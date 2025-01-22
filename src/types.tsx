@@ -6,6 +6,8 @@ export interface NewsListItem {
   updatedAt: string;
   title: string;
   url: string;
+  commentsCount: number;
+  pointsCount: number;
 }
 
 // 用户信息

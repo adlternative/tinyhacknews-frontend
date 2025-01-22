@@ -56,8 +56,13 @@
 .news-list-item-meta {
   font-size: 8pt;
   color: #555;
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.news-list-item-meta > * {
+  margin-right: 3px; /* 调整数值以适应需要的间距大小 */
 }
 
 .news-list-container {
@@ -90,4 +95,10 @@
 .vote-button {
   background-color: transparent;
   margin-right: 5px;
+}
+
+.with-vertical-bar:before,
+.with-vertical-bar:after {
+  content: "|";
+  margin: 0 1px;
 }

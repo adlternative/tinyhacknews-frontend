@@ -56,11 +56,16 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
                 </a>
               </div>
               <div className="news-list-item-meta">
-                <span> 0 points </span>
-                <span> by {item.author.name} </span>
+                <span> {item.pointsCount} points </span>
+                {/* <span> by {item.author.name} </span> */}
+                <a href={`/users?name=${item.author.name}`}>{item.author.name}</a>
                 <span> {relativeTimeFromISOString(item.updatedAt)} </span>
-                <span> | hide | </span>
-                <a href={`/item?id=${item.id}`}>0 comments</a>
+                <a href="#" className="with-vertical-bar">hide</a>
+                <a href={`/item?id=${item.id}`}>
+                  {item.commentsCount == 0
+                    ? "discuss"
+                    : item.commentsCount + " comments"}
+                </a>
               </div>
             </div>
           </li>
