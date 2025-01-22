@@ -3,9 +3,7 @@ import "./Submit.css"; // 假设这是样式文件路径
 import NavBar from "./NavBar";
 import axios from "axios";
 
-interface Props {}
-
-const Submit: React.FC<Props> = () => {
+const Submit: React.FC = () => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");

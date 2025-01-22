@@ -15,8 +15,8 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
   };
 
   const getNextPageUrl = () => {
-    let url = new URL(window.location.href);
-    let params = new URLSearchParams(url.search.slice(1));
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search.slice(1));
     params.set("p", String(currentPage + 1));
     url.search = params.toString();
     return url.toString();
