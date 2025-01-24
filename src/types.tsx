@@ -61,7 +61,7 @@ export interface News {
   title: string;
   url: string;
   text: string;
-  points: number;
+  pointsCount: number;
   commentsCount: number;
 }
 

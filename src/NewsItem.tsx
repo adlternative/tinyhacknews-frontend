@@ -258,7 +258,7 @@ const NewsItem: React.FC = () => {
             {/* Metadata Bar */}
             <div className="news-meta">
               <span className="news-points">
-                {news.points ? news.points : 0} points
+                {news.pointsCount ? news.pointsCount : 0} points
               </span>{" "}
               by
               <a href={`/user?id=${news.author.name}`} className="news-author">
