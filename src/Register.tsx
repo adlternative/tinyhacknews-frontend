@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "./AxiosInstance";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -29,20 +30,14 @@ const Register: React.FC = () => {
     };
 
     try {
-      const response = await fetch("/api/v1/users", {
-        method: "POST",
+      const response = await axiosInstance.post("/api/v1/users", userData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        withCredentials: false,
       });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log("Success:", data);
+      console.log("Success:", response.data);
       // 处理成功响应
       // 注册成功后跳转到登录页面
       navigate("/login");

@@ -3,8 +3,9 @@ import "./ThreadsPage.css";
 import CommentList from "./CommentList";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import { CommentWithNewsMeta } from "./types";
+import { CommentWithNewsMeta, CommentListResponse } from "./types";
 import { useLocation } from "react-router-dom";
+import axiosInstance from "./AxiosInstance";
 
 const ThreadsPage: React.FC = () => {
   const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
@@ -29,23 +30,22 @@ const ThreadsPage: React.FC = () => {
 
     const fetchComments = async () => {
       try {
-        const response = await fetch(
-          `/api/v1/comments/all?user_name=${username}&page_num=${pageNum}&page_size=${pageSize}`,
+        const response = await axiosInstance.get<CommentListResponse>(
+          `/api/v1/comments/all`,
           {
-            method: "GET",
+            params: {
+              page_num: pageNum,
+              page_size: pageSize,
+              user_name: username,
+            },
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include",
+            withCredentials: true,
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch comments: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setComments(data.records);
+        setComments(response.data.records);
         setError(null);
       } catch (err: any) {
         console.error("Error:", err);

@@ -3,6 +3,7 @@ import "./NavBar.css";
 import { UserContext } from "./context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import axiosInstance from "./AxiosInstance";
 
 const NavBar: React.FC = () => {
   const { username, setUsername } = useContext(UserContext);
@@ -21,15 +22,14 @@ const NavBar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/v1/users/logout", {
-        method: "POST",
-        credentials: "include",
+      const response = await axiosInstance.post("/api/v1/users/logout", {}, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
       });
 
-      if (!response.ok) {
-        throw new Error("Logout failed");
-      }
-
+      console.log("Logout success:", response.data);
       // 清理 jwt cookie
       Cookies.remove("jwt");
 

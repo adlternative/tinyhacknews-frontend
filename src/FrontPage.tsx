@@ -3,8 +3,9 @@ import "./FrontPage.css";
 import NavBar from "./NavBar";
 import NewsList from "./NewsList";
 import Footer from "./Footer";
-import { NewsListItem } from "./types";
+import { NewsListItem, NewsListResponse } from "./types";
 import { useLocation } from "react-router-dom";
+import axiosInstance from "./AxiosInstance";
 
 const FrontPage: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
@@ -31,23 +32,22 @@ const FrontPage: React.FC = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(
-          `/api/v1/news/all?page_num=${pageNum}&page_size=${defaultPageSize}&date=${dayParam}`,
+        const response = await axiosInstance.get<NewsListResponse>(
+          `/api/v1/news/all`,
           {
-            method: "GET",
+            params: {
+              page_num: pageNum,
+              page_size: defaultPageSize,
+              date: dayParam,
+            },
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include", // 确保发送和接收 Cookie
+            withCredentials: true,
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch news: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setNews(data.records); // 假设返回数据结构中包含一个 news 数组
+        setNews(response.data.records); // 假设返回数据结构中包含一个 news 数组
         setError(null); // 清除之前的错误
       } catch (err: any) {
         console.error("Error:", err);

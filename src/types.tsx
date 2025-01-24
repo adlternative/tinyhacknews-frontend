@@ -87,3 +87,16 @@ export interface CommentListResponse {
   maxLimit: number | null;
   pages: number;
 }
+
+export interface NewsListResponse {
+  records: NewsListItem[];
+  total: number;
+  size: number;
+  current: number;
+  orders: any[];
+  optimizeCountSql: boolean;
+  searchCount: boolean;
+  countId: number | null;
+  maxLimit: number | null;
+  pages: number;
+}

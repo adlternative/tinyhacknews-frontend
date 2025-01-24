@@ -3,6 +3,7 @@ import "./Login.css"; // 如果需要，可以创建相应的CSS文件
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext"; // 导入 UserContext
 import getUsernameFromJwt from "./utils/getUsernameFromJwt"; // 导入解析用户名的工具
+import axiosInstance from "./AxiosInstance";
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -24,22 +25,14 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/v1/users/login", {
-        method: "POST",
+      const response = await axiosInstance.post("/api/v1/users/login", credentials, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
-        credentials: "include",
+        withCredentials: false,
       });
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
-
-      const data = await response.json();
-      console.log("Login success:", data);
-
+      console.log("Login success:", response.data);
       console.log("Cookies:", document.cookie);
       // 登录成功后跳转到首页
 

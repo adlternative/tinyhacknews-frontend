@@ -3,8 +3,9 @@ import "./CommentListPage.css";
 import CommentList from "./CommentList";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import { CommentWithNewsMeta } from "./types";
+import { CommentWithNewsMeta, CommentListResponse } from "./types";
 import { useLocation } from "react-router-dom";
+import axiosInstance from "./AxiosInstance";
 
 const CommentListPage: React.FC = () => {
   const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
@@ -14,29 +15,26 @@ const CommentListPage: React.FC = () => {
   const pParam = searchParams.get("p");
   const pageNum =
     pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
-    const pageSize = 30;
-
+  const pageSize = 30;
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await fetch(
-          `/api/v1/comments/all?page_num=${pageNum}&page_size=${pageSize}`,
+        const response = await axiosInstance.get<CommentListResponse>(
+          `/api/v1/comments/all`,
           {
-            method: "GET",
+            params: {
+              page_num: pageNum,
+              page_size: pageSize,
+            },
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include",
+            withCredentials: true,
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch comments: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        setComments(data.records);
+        setComments(response.data.records);
         setError(null);
       } catch (err: any) {
         console.error("Error:", err);
