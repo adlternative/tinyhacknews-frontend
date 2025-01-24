@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./context/UserContext";
 import NavBar from "./NavBar";
-
+import axiosInstance from "./AxiosInstance";
 import { UserInfo } from "./types";
 import "./User.css";
 import { FormatDate } from "./utils/dateUtils";
@@ -43,7 +43,7 @@ const User: React.FC = () => {
 
         if (isOwnProfile) {
           // If the name parameter is the same as the current username, call /api/v1/users/me
-          response = await axios.get("/api/v1/users/me", {
+          response = await axiosInstance.get("/api/v1/users/me", {
             headers: {
               "Content-Type": "application/json",
             },
@@ -51,7 +51,7 @@ const User: React.FC = () => {
           });
         } else {
           // Otherwise, call /api/v1/users?name={name}
-          response = await axios.get("/api/v1/users", {
+          response = await axiosInstance.get("/api/v1/users", {
             params: { name: nameParam },
             headers: {
               "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const User: React.FC = () => {
         email,
       };
 
-      const response = await axios.put("/api/v1/users", payload, {
+      const response = await axiosInstance.put("/api/v1/users", payload, {
         headers: {
           "Content-Type": "application/json",
         },

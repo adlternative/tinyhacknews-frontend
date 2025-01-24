@@ -9,6 +9,7 @@ import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";
 import { Comment, News, NewsCommentsResponse } from "./types";
 import getPureURI from "./utils/uri";
+import axiosInstance from "./AxiosInstance";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -65,22 +66,13 @@ const NewsItem: React.FC = () => {
     setLoadingNews(true);
     setErrorNews(null);
     try {
-      const response = await axios.get<News>(`/api/v1/news/${id}`);
+      const response = await axiosInstance.get<News>(`/api/v1/news/${id}`);
       setNews(response.data);
-    } catch (error) {
-      const err = error as AxiosError;
-      console.error(err);
-      if (err.response) {
-        // Server responded with a status other than 2xx
-        setErrorNews(
-          `Failed to fetch news content: ${err.response.status} ${err.response.statusText}`
-        );
-      } else if (err.request) {
-        // Request was made but no response received
-        setErrorNews("Failed to fetch news content: No response from server.");
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setErrorNews(err.message);
       } else {
-        // Something else happened
-        setErrorNews(`Failed to fetch news content: ${err.message}`);
+        setErrorNews("An unexpected error occurred");
       }
     } finally {
       setLoadingNews(false);
@@ -98,7 +90,7 @@ const NewsItem: React.FC = () => {
     setLoadingComments(true);
     setErrorComments(null);
     try {
-      const response = await axios.get<NewsCommentsResponse>(
+      const response = await axiosInstance.get<NewsCommentsResponse>(
         `/api/v1/news/${id}/comments`,
         {
           params: {
@@ -154,7 +146,7 @@ const NewsItem: React.FC = () => {
           requestBody.parentCommentId = parentCommentId;
         }
 
-        const response = await axios.post<Comment>(
+        const response = await axiosInstance.post<Comment>(
           `/api/v1/news/${id}/comments`,
           requestBody
         );
