@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NewsList.css";
 import { NewsListItem } from "./types";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import getPureURI from "./utils/uri";
+import { UserContext } from "./context/UserContext";
 
 interface Props {
   news: NewsListItem[];
@@ -13,6 +14,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
   const handleVote = (id: number) => {
     console.log(`Voted for ${id}`);
   };
+  const { username } = useContext(UserContext);
 
   const getNextPageUrl = () => {
     const url = new URL(window.location.href);
@@ -31,13 +33,21 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
               <span className="news-list-number">
                 {(currentPage - 1) * 30 + index + 1}.
               </span>
-              <button
-                className="vote-button"
-                onClick={() => handleVote(item.id)}
-                aria-label={`Vote for ${item.title}`}
-              >
-                <img src="triangle.svg" alt="Vote" className="vote-triangle" />
-              </button>
+              {item.author.name === username ? (
+                <span className="self-post-tag">*</span>
+              ) : (
+                <button
+                  className="vote-button"
+                  onClick={() => handleVote(item.id)}
+                  aria-label={`Vote for ${item.title}`}
+                >
+                  <img
+                    src="triangle.svg"
+                    alt="Vote"
+                    className="vote-triangle"
+                  />
+                </button>
+              )}
             </div>
             <div className="news-content">
               <a

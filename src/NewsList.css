@@ -116,3 +116,8 @@
   content: "|";
   margin: 0 1px;
 }
+
+.self-post-tag {
+  color: red;
+  padding: 1px 3px;
+}
