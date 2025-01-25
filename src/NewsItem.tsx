@@ -269,7 +269,7 @@ const NewsItem: React.FC = () => {
               </span>{" "}
               | <a href="#">hide</a> | <a href="#">past</a> |{" "}
               <a href="#">favorite</a> |
-              <a href="#">{news.commentsCount} comments</a>
+              <a href="#">{news.commentsCount === 0 ? "discuss" : news.commentsCount + " comments"}</a>
             </div>
 
             {/* News Content */}
