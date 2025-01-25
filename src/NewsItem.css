@@ -143,3 +143,47 @@
   list-style: none;
   padding: 0;
 }
+
+.voting-section {
+  width: 30px; /* Fixed width to reserve space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.vote-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.vote-button.hidden {
+  visibility: hidden; /* Hide button but keep space */
+}
+
+.vote-triangle {
+  width: 10px; /* Adjust size as needed */
+  height: 10px;
+}
+
+.self-post-tag {
+  color: red;
+  padding: 1px 3px;
+  font-size: 12px; /* Adjust font size as needed */
+}
+
+/* Unvote Button Styling */
+.unvote-button {
+  background-color: transparent;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 8pt;
+  margin-left: 5px;
+}
+
+.unvote-button:hover {
+  text-decoration: underline;
+}

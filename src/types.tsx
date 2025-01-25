@@ -64,6 +64,7 @@ export interface News {
   text: string;
   pointsCount: number;
   commentsCount: number;
+  hasVote: boolean;
 }
 
 // 分页接口返回值

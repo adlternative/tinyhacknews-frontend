@@ -1,5 +1,5 @@
 // src/components/NewsItem.tsx
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { useLocation } from "react-router-dom";
 import "./NewsItem.css";
@@ -10,11 +10,14 @@ import CommentItem from "./CommentItem";
 import { Comment, News, NewsCommentsResponse } from "./types";
 import getPureURI from "./utils/uri";
 import axiosInstance from "./AxiosInstance";
+import { UserContext } from "./context/UserContext"; // Import UserContext
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
+
+  const { username, loading: userLoading } = useContext(UserContext);
 
   const [news, setNews] = useState<News | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -225,6 +228,47 @@ const NewsItem: React.FC = () => {
     }
   };
 
+  // Voting functions
+  const handleVote = async () => {
+    if (!id) return;
+    try {
+      await axiosInstance.post(`/api/v1/news/${id}/vote`);
+      setNews((prevNews) =>
+        prevNews
+          ? {
+              ...prevNews,
+              pointsCount: prevNews.pointsCount + 1,
+              hasVote: true,
+            }
+          : prevNews
+      );
+      console.log(`Successfully voted for news: ${id}`);
+    } catch (error) {
+      console.error(`Vote failed for news ${id}:`, error);
+    }
+  };
+
+  const handleUnvote = async () => {
+    if (!id) return;
+    try {
+      await axiosInstance.post(`/api/v1/news/${id}/unvote`);
+      setNews((prevNews) =>
+        prevNews
+          ? {
+              ...prevNews,
+              pointsCount: prevNews.pointsCount - 1,
+              hasVote: false,
+            }
+          : prevNews
+      );
+      console.log(`Successfully unvoted for news: ${id}`);
+    } catch (error) {
+      console.error(`Unvote failed for news ${id}:`, error);
+    }
+  };
+
+  // Determineif the current user is the author
+
   return (
     <div className="page-container">
       {/* NavBar */}
@@ -232,7 +276,7 @@ const NewsItem: React.FC = () => {
 
       {/* Main content area */}
       <div className="news-item-container">
-        {loadingNews ? (
+        {(userLoading || loadingNews) ? (
           <div className="loading">Loading news content...</div>
         ) : errorNews ? (
           <div className="error">{errorNews}</div>
@@ -240,6 +284,24 @@ const NewsItem: React.FC = () => {
           <>
             {/* News Title and URL */}
             <div className="news-title-container">
+              {/* Voting Section on the Left */}
+              {username === news.author.name ? (
+                <span className="self-post-tag">*</span>
+              ) : (
+                <button
+                  className={`vote-button ${news.hasVote ? "hidden" : ""}`}
+                  onClick={handleVote}
+                  aria-label={`Vote for ${news.title}`}
+                >
+                  <img
+                    src="triangle.svg"
+                    alt="Vote"
+                    className="vote-triangle"
+                  />
+                </button>
+              )}
+
+              {/* Title and URL */}
               <h2 className="news-title">
                 <a href={news.url} target="_blank" rel="noopener noreferrer">
                   {news.title}
@@ -269,7 +331,21 @@ const NewsItem: React.FC = () => {
               </span>{" "}
               | <a href="#">hide</a> | <a href="#">past</a> |{" "}
               <a href="#">favorite</a> |
-              <a href="#">{news.commentsCount === 0 ? "discuss" : news.commentsCount + " comments"}</a>
+              <a href="#">
+                {news.commentsCount === 0
+                  ? "discuss"
+                  : news.commentsCount + " comments"}
+              </a>
+              {/* Unvote Button for Author's Own News */}
+              {news.hasVote && (
+                <button
+                  className="unvote-button with-vertical-bar"
+                  onClick={handleUnvote}
+                  aria-label={`Unvote for ${news.title}`}
+                >
+                  unvote
+                </button>
+              )}
             </div>
 
             {/* News Content */}
