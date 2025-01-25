@@ -8,6 +8,7 @@ export interface NewsListItem {
   url: string;
   commentsCount: number;
   pointsCount: number;
+  hasVote: boolean;
 }
 
 // 用户信息

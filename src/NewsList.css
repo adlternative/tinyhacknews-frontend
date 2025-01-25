@@ -1,3 +1,5 @@
+/* NewsList.css */
+
 .news-list {
   list-style-type: none;
   padding: 0;
@@ -29,11 +31,56 @@
   justify-content: flex-end;
 }
 
+.voting-section {
+  width: 30px; /* 固定宽度，确保空间被保留 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vote-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.vote-button.hidden {
+  visibility: hidden; /* 隐藏按钮，但保留空间 */
+}
+
+.vote-triangle {
+  width: 10px; /* 根据需要调整大小 */
+  height: 10px;
+}
+
+.self-post-tag {
+  color: red;
+  padding: 1px 3px;
+  font-size: 12px; /* 根据需要调整字体大小 */
+}
+
+.news-content {
+  grid-area: part2;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
 .news-list-item-title {
   font-size: 10pt;
   color: #2c3e50;
   display: inline-block;
   text-align: center;
+}
+
+.news-list-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-list-title-link:hover {
+  text-decoration: underline;
 }
 
 .news-list-item-link {
@@ -51,32 +98,31 @@
   text-decoration: underline;
 }
 
-.news-list-title-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.news-list-title-link:hover {
-  text-decoration: underline;
-}
-
-.news-content {
-  grid-area: part2;
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-start;
-}
-
 .news-list-item-meta {
   font-size: 8pt;
   color: #555;
   display: flex;
+  align-items: center;
   text-align: left;
   grid-area: part4;
 }
 
 .news-list-item-meta > * {
-  margin-right: 3px; /* 调整数值以适应需要的间距大小 */
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+.unvote-button {
+  background-color: transparent;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 8pt;
+  margin-left: 5px;
+}
+
+.unvote-button:hover {
+  text-decoration: underline;
 }
 
 .news-list-container {
@@ -100,24 +146,8 @@
   margin-left: 5px;
 }
 
-.vote-triangle {
-  width: 10px; /* Adjust size as needed */
-  height: 10px;
-  /* 清除背景颜色 */
-}
-
-.vote-button {
-  background-color: transparent;
-  margin-right: 5px;
-}
-
-.with-vertical-bar:before,
-.with-vertical-bar:after {
+.with-vertical-bar:before {
   content: "|";
-  margin: 0 1px;
-}
-
-.self-post-tag {
-  color: red;
-  padding: 1px 3px;
+  padding-left: 1px;
+  padding-right: 2px;
 }
