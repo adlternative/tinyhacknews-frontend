@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./RegisterPage.css";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "./AxiosInstance";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const Register: React.FC = () => {

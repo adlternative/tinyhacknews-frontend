@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SubmitPage.css"; // 假设这是样式文件路径
-import NavBar from './components/NavBar';
+import NavBar from 'components/NavBar';
 import axios from "axios";
 import { toast } from "react-toastify";
 

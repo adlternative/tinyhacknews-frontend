@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import "./LoginPage.css"; // 如果需要，可以创建相应的CSS文件
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "./context/UserContext"; // 导入 UserContext
-import getUsernameFromJwt from "./utils/getUsernameFromJwt"; // 导入解析用户名的工具
-import axiosInstance from "./AxiosInstance";
+import { UserContext } from "contexts/UserContext"; // 导入 UserContext
+import GetUsernameFromJwt from "utils/GetUsernameFromJwt"; // 导入解析用户名的工具
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
       // 登录成功后跳转到首页
 
       // 解析 JWT 获取用户名
-      const fetchedUsername = await getUsernameFromJwt();
+      const fetchedUsername = await GetUsernameFromJwt();
       setUsername(fetchedUsername); // 更新 UserContext
 
       navigate("/");

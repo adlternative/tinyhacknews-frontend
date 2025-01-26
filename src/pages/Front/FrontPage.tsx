@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
-import "./HomePage.css";
-import NavBar from './components/NavBar';
-import NewsList from "./components/NewsList";
-import Footer from "./components/Footer";
-import { NewsListItem, NewsListResponse } from "./types";
+import "./FrontPage.css";
+import NavBar from 'components/NavBar';
+import NewsList from "components/NewsList";
+import Footer from "components/Footer";
+import { NewsListItem, NewsListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
-import axiosInstance from "./AxiosInstance";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
-const Home: React.FC = () => {
+const FrontPage: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+
+  // 获取当前日期格式化为 YYYY-MM-DD 格式
+  const getCurrentDate = (): string => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear().toString().padStart(4, "0");
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // 注意月份是从 0 开始的，所以要加 1
+    const day = currentDate.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const dayParam = searchParams.get("day") || getCurrentDate();
   const pParam = searchParams.get("p");
+
   const pageNum =
     pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
   const defaultPageSize = 30;
 
   useEffect(() => {
-    // 定义一个异步函数来获取数据
     const fetchNews = async () => {
       try {
         const response = await axiosInstance.get<NewsListResponse>(
@@ -28,6 +39,7 @@ const Home: React.FC = () => {
             params: {
               page_num: pageNum,
               page_size: defaultPageSize,
+              date: dayParam,
             },
             headers: {
               "Content-Type": "application/json",
@@ -44,12 +56,11 @@ const Home: React.FC = () => {
       }
     };
 
-    // 调用获取数据函数
     fetchNews();
-  }, []); // 空依赖数组确保此效果只在组件首次挂载时运行
+  }, []);
 
   return (
-    <div className="home-container">
+    <div className="front-page-container">
       <NavBar />
       {error && <p className="error-message">Error: {error}</p>}
       <NewsList news={news} currentPage={pageNum} />
@@ -58,4 +69,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default FrontPage;

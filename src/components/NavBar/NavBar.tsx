@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import "./NavBar.css";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import axiosInstance from "../../AxiosInstance";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const NavBar: React.FC = () => {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./CommentListPage.css";
-import CommentList from "./components/CommentList";
-import NavBar from './components/NavBar';
-import Footer from "./components/Footer";
-import { CommentWithNewsMeta, CommentListResponse } from "./types";
+import CommentList from "components/CommentList";
+import NavBar from 'components/NavBar';
+import Footer from "components/Footer";
+import { CommentWithNewsMeta, CommentListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
-import axiosInstance from "./AxiosInstance";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const CommentListPage: React.FC = () => {

@@ -1,7 +1,7 @@
-// src/components/CommentItem.tsx
+// srcomponents/CommentItem.tsx
 import React, { useState } from "react";
-import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
-import { Comment } from "../../types"; // Import the Comment interface
+import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
+import { Comment } from "types/types"; // Import the Comment interface
 import "./CommentItem.css"; // Optional: Separate CSS for CommentItem
 
 interface CommentItemProps {
@@ -51,7 +51,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, addComment }) => {
           {comment.author.name}
         </a>
         <span className="comment-date">
-          {relativeTimeFromISOString(comment.createdAt)}
+          {RelativeTimeFromISOString(comment.createdAt)}
         </span>
       </div>
       <div className="comment-text">{comment.text}</div>

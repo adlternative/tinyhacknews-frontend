@@ -3,4 +3,4 @@ const FormatDate = (date: Date): string => {
   return date.toLocaleDateString("en-US", options);
 };
 
-export { FormatDate };
+export default FormatDate;

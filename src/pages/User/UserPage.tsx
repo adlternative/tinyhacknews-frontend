@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios";
-import { UserContext } from "./context/UserContext";
-import NavBar from './components/NavBar';
-import axiosInstance from "./AxiosInstance";
-import { UserInfo } from "./types";
+import { UserContext } from "contexts/UserContext";
+import NavBar from "components/NavBar";
+import axiosInstance from "utils/AxiosInstance";
+import { UserInfo } from "types/types";
 import "./UserPage.css";
-import { FormatDate } from "./utils/dateUtils";
+import FormatDate from "utils/DateUtils";
 import { toast } from "react-toastify";
 
 const User: React.FC = () => {
@@ -66,7 +65,7 @@ const User: React.FC = () => {
         setAbout(response.data.about || "");
         setEmail(response.data.email || "");
       } catch (err: any) {
-        toast.error("Failed to fetch user information:" +  err);
+        toast.error("Failed to fetch user information:" + err);
         setError("Unable to fetch user information. Please try again later.");
       } finally {
         setLoading(false);
@@ -104,7 +103,7 @@ const User: React.FC = () => {
       setUserData(response.data);
       setUpdateStatus("User information updated successfully.");
     } catch (err: any) {
-      toast.error("Failed to update user information:" +  err);
+      toast.error("Failed to update user information:" + err);
       setUpdateStatus("Failed to update user information. Please try again.");
     } finally {
       setUpdating(false);

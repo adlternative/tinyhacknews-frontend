@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentList.css";
-import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
-import { CommentWithNewsMeta } from "../../types";
+import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
+import { CommentWithNewsMeta } from "types/types";
 
 interface Props {
   comments: CommentWithNewsMeta[];
@@ -32,7 +32,7 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
             <div className="comment-content-with-meta">
               <div className="comment-meta">
                 <span>{comment.author.name}</span>{" "}
-                <span>{relativeTimeFromISOString(comment.createdAt)}</span> |{" "}
+                <span>{RelativeTimeFromISOString(comment.createdAt)}</span> |{" "}
                 <span>on: </span>
                 <a
                   href={`/news/${comment.newsId}`}

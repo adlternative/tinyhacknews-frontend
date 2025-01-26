@@ -1,16 +1,16 @@
-// src/components/NewsItem.tsx
+// srcomponents/NewsItem.tsx
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { useLocation } from "react-router-dom";
 import "./NewsItemPage.css";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import CommentItem from "./components/CommentItem";
-import { Comment, News, NewsCommentsResponse } from "./types";
-import getPureURI from "./utils/uri";
-import axiosInstance from "./AxiosInstance";
-import { UserContext } from "./context/UserContext"; // Import UserContext
+import NavBar from "components/NavBar";
+import Footer from "components/Footer";
+import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
+import CommentItem from "components/CommentItem";
+import { Comment, News, NewsCommentsResponse } from "types/types";
+import GetPureURI from "utils/URI";
+import axiosInstance from "utils/AxiosInstance";
+import { UserContext } from "contexts/UserContext"; // Import UserContext
 import { toast } from "react-toastify";
 
 const NewsItem: React.FC = () => {
@@ -314,7 +314,7 @@ const NewsItem: React.FC = () => {
                 rel="noopener noreferrer"
                 className="news-url-small"
               >
-                ({getPureURI(news.url)})
+                ({GetPureURI(news.url)})
               </a>
             </div>
 
@@ -328,7 +328,7 @@ const NewsItem: React.FC = () => {
                 {news.author.name}
               </a>
               <span className="news-time">
-                {relativeTimeFromISOString(news.createdAt)}
+                {RelativeTimeFromISOString(news.createdAt)}
               </span>{" "}
               | <a href="#">hide</a> | <a href="#">past</a> |{" "}
               <a href="#">favorite</a> |

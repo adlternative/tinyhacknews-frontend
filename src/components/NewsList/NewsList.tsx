@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./NewsList.css";
-import { NewsListItem } from "../../types";
-import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
-import getPureURI from "../../utils/uri";
-import { UserContext } from "../../context/UserContext";
-import axiosInstance from "../../AxiosInstance";
+import { NewsListItem } from "types/types";
+import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
+import GetPureURI from "utils/URI";
+import { UserContext } from "contexts/UserContext";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -104,13 +104,13 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {`(` + getPureURI(item.url) + `)`}
+                {`(` + GetPureURI(item.url) + `)`}
               </a>
             </div>
             <div className="news-list-item-meta">
               <span> {item.pointsCount} points </span>
               <a href={`/users?name=${item.author.name}`}>{item.author.name}</a>
-              <span> {relativeTimeFromISOString(item.updatedAt)} </span>
+              <span> {RelativeTimeFromISOString(item.updatedAt)} </span>
               {item.hasVote && (
                 <button
                   className="unvote-button with-vertical-bar"

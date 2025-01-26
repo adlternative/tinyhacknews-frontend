@@ -1,6 +1,6 @@
 import moment from "moment"; // 需要安装 moment 库
 
-function relativeTimeFromISOString(isoString: string): string {
+function RelativeTimeFromISOString(isoString: string): string {
   // 使用 moment.js 来处理时间的比较和格式化
   const time = moment(isoString);
   const now = moment();
@@ -22,4 +22,4 @@ function relativeTimeFromISOString(isoString: string): string {
   }
 }
 
-export default relativeTimeFromISOString;
+export default RelativeTimeFromISOString;

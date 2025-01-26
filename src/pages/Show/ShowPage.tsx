@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./HomePage.css";
-import NavBar from './components/NavBar';
-import NewsList from "./components/NewsList";
-import Footer from "./components/Footer";
-import { NewsListItem, NewsListResponse } from "./types";
+import "pages/Home/HomePage.css";
+import NavBar from 'components/NavBar';
+import NewsList from "components/NewsList";
+import Footer from "components/Footer";
+import { NewsListItem, NewsListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
-import axiosInstance from "./AxiosInstance";
+import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const Show: React.FC = () => {
