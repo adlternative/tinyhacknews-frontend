@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./NotFound.css";
+import "./NotFoundPage.css";
 import NavBar from './components/NavBar';
 import Footer from "./components/Footer";
 

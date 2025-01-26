@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
+import "./HomePage.css";
 import NavBar from './components/NavBar';
 import NewsList from "./NewsList";
 import Footer from "./components/Footer";
-import { NewsListItem, NewsListResponse } from "./types";
+import { NewsListResponse, NewsListItem } from "./types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "./AxiosInstance";
 import { toast } from "react-toastify";
 
-const Home: React.FC = () => {
+const Ask: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation();
@@ -17,6 +17,7 @@ const Home: React.FC = () => {
   const pageNum =
     pParam && !isNaN(Number(pParam)) && Number(pParam) > 0 ? Number(pParam) : 1;
   const defaultPageSize = 30;
+  const newsType = "ASK";
 
   useEffect(() => {
     // 定义一个异步函数来获取数据
@@ -28,6 +29,7 @@ const Home: React.FC = () => {
             params: {
               page_num: pageNum,
               page_size: defaultPageSize,
+              type: newsType,
             },
             headers: {
               "Content-Type": "application/json",
@@ -58,4 +60,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Ask;

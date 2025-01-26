@@ -5,7 +5,7 @@ import { UserContext } from "./context/UserContext";
 import NavBar from './components/NavBar';
 import axiosInstance from "./AxiosInstance";
 import { UserInfo } from "./types";
-import "./User.css";
+import "./UserPage.css";
 import { FormatDate } from "./utils/dateUtils";
 import { toast } from "react-toastify";
 
