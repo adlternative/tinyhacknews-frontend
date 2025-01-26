@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentList.css";
-import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import { CommentWithNewsMeta } from "./types";
+import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
+import { CommentWithNewsMeta } from "../../types";
 
 interface Props {
   comments: CommentWithNewsMeta[];

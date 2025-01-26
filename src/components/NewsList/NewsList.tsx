@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./NewsList.css";
-import { NewsListItem } from "./types";
-import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import getPureURI from "./utils/uri";
-import { UserContext } from "./context/UserContext";
-import axiosInstance from "./AxiosInstance";
+import { NewsListItem } from "../../types";
+import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
+import getPureURI from "../../utils/uri";
+import { UserContext } from "../../context/UserContext";
+import axiosInstance from "../../AxiosInstance";
 import { toast } from "react-toastify";
 
 interface Props {

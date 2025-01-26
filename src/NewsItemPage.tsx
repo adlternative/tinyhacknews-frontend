@@ -6,7 +6,7 @@ import "./NewsItemPage.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import CommentItem from "./CommentItem";
+import CommentItem from "./components/CommentItem";
 import { Comment, News, NewsCommentsResponse } from "./types";
 import getPureURI from "./utils/uri";
 import axiosInstance from "./AxiosInstance";

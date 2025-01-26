@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CommentListPage.css";
-import CommentList from "./CommentList";
+import CommentList from "./components/CommentList";
 import NavBar from './components/NavBar';
 import Footer from "./components/Footer";
 import { CommentWithNewsMeta, CommentListResponse } from "./types";

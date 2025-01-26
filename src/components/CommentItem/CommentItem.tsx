@@ -1,7 +1,7 @@
 // src/components/CommentItem.tsx
 import React, { useState } from "react";
-import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
-import { Comment } from "./types"; // Import the Comment interface
+import relativeTimeFromISOString from "../../utils/relativeTimeFromISOString";
+import { Comment } from "../../types"; // Import the Comment interface
 import "./CommentItem.css"; // Optional: Separate CSS for CommentItem
 
 interface CommentItemProps {
