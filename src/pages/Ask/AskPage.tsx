@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 const Ask: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const pParam = searchParams.get("p");
@@ -23,6 +24,7 @@ const Ask: React.FC = () => {
     // 定义一个异步函数来获取数据
     const fetchNews = async () => {
       try {
+        setLoading(true);
         const response = await axiosInstance.get<NewsListResponse>(
           `/api/v1/news/all`,
           {
@@ -42,7 +44,9 @@ const Ask: React.FC = () => {
         setError(null); // 清除之前的错误
       } catch (err: any) {
         toast.error("Error:", err);
-        setError(err.message || "Something went wrong");
+        toast.error(`fetch news failed, Error: ${err}`);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -53,8 +57,7 @@ const Ask: React.FC = () => {
   return (
     <div className="home-container">
       <NavBar />
-      {error && <p className="error-message">Error: {error}</p>}
-      <NewsList news={news} currentPage={pageNum} />
+      {!loading && !error && <NewsList news={news} currentPage={pageNum} />}
       <Footer />
     </div>
   );

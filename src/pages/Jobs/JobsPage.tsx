@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "pages/Home/HomePage.css";
-import NavBar from 'components/NavBar';
+import NavBar from "components/NavBar";
 import NewsList from "components/NewsList";
 import Footer from "components/Footer";
 import { NewsListItem, NewsListResponse } from "types/types";
@@ -9,6 +9,7 @@ import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 
 const Jobs: React.FC = () => {
+  const [loading, setLoading] = useState(true);
   const [news, setNews] = useState<NewsListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation();
@@ -23,6 +24,8 @@ const Jobs: React.FC = () => {
     // 定义一个异步函数来获取数据
     const fetchNews = async () => {
       try {
+        setLoading(true);
+
         const response = await axiosInstance.get<NewsListResponse>(
           `/api/v1/news/all`,
           {
@@ -40,9 +43,11 @@ const Jobs: React.FC = () => {
 
         setNews(response.data.records); // 假设返回数据结构中包含一个 news 数组
         setError(null); // 清除之前的错误
-      } catch (err: any) {
-        toast.error("Error:", err);
-        setError(err.message || "Something went wrong");
+      } catch (err) {
+        toast.error(`fetch news failed, Error: ${err}`);
+        setError("fetch news failed");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -53,8 +58,7 @@ const Jobs: React.FC = () => {
   return (
     <div className="home-container">
       <NavBar />
-      {error && <p className="error-message">Error: {error}</p>}
-      <NewsList news={news} currentPage={pageNum} />
+      {!loading && !error && <NewsList news={news} currentPage={pageNum} />}
       <Footer />
     </div>
   );
