@@ -5,6 +5,7 @@ import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import getPureURI from "./utils/uri";
 import { UserContext } from "./context/UserContext";
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 interface Props {
   news: NewsListItem[];
@@ -32,7 +33,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
       );
       console.log(`success vote for news: ${id}`);
     } catch (error) {
-      console.error(`unvote for news failed: ${error}`);
+      toast.error(`unvote for news failed: ${error}`);
     }
   };
 
@@ -48,7 +49,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
       );
       console.log(`success unvote for news: ${id}`);
     } catch (error) {
-      console.error(`vote for news failed: ${error}`);
+      toast.error(`vote for news failed: ${error}`);
     }
   };
 

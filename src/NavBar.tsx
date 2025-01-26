@@ -4,6 +4,7 @@ import { UserContext } from "./context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 const NavBar: React.FC = () => {
   const { username, setUsername } = useContext(UserContext);
@@ -36,7 +37,7 @@ const NavBar: React.FC = () => {
       setUsername(null); // 清除 UserContext 中的用户名
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
+      toast.error(`error: ${error}`);
       // 处理错误
     }
   };

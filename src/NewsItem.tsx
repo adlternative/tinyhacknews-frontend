@@ -11,6 +11,7 @@ import { Comment, News, NewsCommentsResponse } from "./types";
 import getPureURI from "./utils/uri";
 import axiosInstance from "./AxiosInstance";
 import { UserContext } from "./context/UserContext"; // Import UserContext
+import { toast } from "react-toastify";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -107,7 +108,7 @@ const NewsItem: React.FC = () => {
       setComments(tree);
     } catch (error) {
       const err = error as AxiosError;
-      console.error(err);
+      toast.error(`error: ${err}`);
       if (err.response) {
         setErrorComments(
           `Failed to fetch comments: ${err.response.status} ${err.response.statusText}`
@@ -202,7 +203,7 @@ const NewsItem: React.FC = () => {
         }
       } catch (error) {
         const err = error as AxiosError;
-        console.error(err);
+        toast.error(`error: ${err}`);
         if (err.response) {
           throw new Error(
             `Failed to add comment: ${err.response.status} ${err.response.statusText}`
@@ -244,7 +245,7 @@ const NewsItem: React.FC = () => {
       );
       console.log(`Successfully voted for news: ${id}`);
     } catch (error) {
-      console.error(`Vote failed for news ${id}:`, error);
+      toast.error(`Vote failed for news ${id}:` + error);
     }
   };
 
@@ -263,7 +264,7 @@ const NewsItem: React.FC = () => {
       );
       console.log(`Successfully unvoted for news: ${id}`);
     } catch (error) {
-      console.error(`Unvote failed for news ${id}:`, error);
+      toast.error(`Unvote failed for news ${id}:` + error);
     }
   };
 
@@ -276,7 +277,7 @@ const NewsItem: React.FC = () => {
 
       {/* Main content area */}
       <div className="news-item-container">
-        {(userLoading || loadingNews) ? (
+        {userLoading || loadingNews ? (
           <div className="loading">Loading news content...</div>
         ) : errorNews ? (
           <div className="error">{errorNews}</div>

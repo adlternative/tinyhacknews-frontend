@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { NewsListItem, NewsListResponse } from "./types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 const Show: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
@@ -40,7 +41,7 @@ const Show: React.FC = () => {
         setNews(response.data.records); // 假设返回数据结构中包含一个 news 数组
         setError(null); // 清除之前的错误
       } catch (err: any) {
-        console.error("Error:", err);
+        toast.error("Error:" + err);
         setError(err.message || "Something went wrong");
       }
     };

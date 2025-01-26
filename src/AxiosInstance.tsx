@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 // 创建 Axios 实例
 const axiosInstance = axios.create();
@@ -10,11 +11,11 @@ axiosInstance.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      console.error("Unauthorized, please login");
+      toast.error("Unauthorized, please login");
       // 这里可以添加跳转到登录页的逻辑，例如：
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else {
-      console.error("Request failed:", error);
+      // toast.error(`error: ${error}`);
     }
     return Promise.reject(error);
   }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Submit.css"; // 假设这是样式文件路径
 import NavBar from "./NavBar";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Submit: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -34,7 +35,7 @@ const Submit: React.FC = () => {
         console.log("Submit success:", response.data);
       })
       .catch((error) => {
-        console.error("Submit failed:", error);
+        toast.error("Submit failed:" + error);
         // 根据不同的错误类型设置错误信息
         if (error.response) {
           // 服务器返回了状态码

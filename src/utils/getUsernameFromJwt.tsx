@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 // 定义 JWT 有效载荷的接口，根据你的 JWT 结构进行调整
 interface JwtPayload {
@@ -25,7 +26,7 @@ const getUsernameFromJwt = async (): Promise<string | null> => {
     const decoded: JwtPayload = jwtDecode(token);
     return decoded.user_name || null;
   } catch (error) {
-    console.error("解码 JWT 时出错:", error);
+    toast.error("解码 JWT 时出错:" + error);
     return null;
   }
 };

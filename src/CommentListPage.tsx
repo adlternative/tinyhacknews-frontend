@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { CommentWithNewsMeta, CommentListResponse } from "./types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 const CommentListPage: React.FC = () => {
   const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
@@ -37,7 +38,7 @@ const CommentListPage: React.FC = () => {
         setComments(response.data.records);
         setError(null);
       } catch (err: any) {
-        console.error("Error:", err);
+        toast.error("Error:", err);
         setError(err.message || "Something went wrong");
       }
     };

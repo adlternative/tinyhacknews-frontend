@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const Register: React.FC = () => {
       // 注册成功后跳转到登录页面
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Error:" + error);
       // 处理错误
     }
     // You can add your form submission logic here

@@ -18,11 +18,26 @@ import ThreadsPage from "./ThreadsPage";
 import FrontPage from "./FrontPage";
 import FaqPage from "./FaqPage";
 import GuideLinesPage from "./GuideLinesPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App: React.FC = () => {
   return (
     <UserProvider>
       <Router>
+        {/* 将 ToastContainer 放在 Router 内部，确保它可以覆盖所有路由 */}
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />

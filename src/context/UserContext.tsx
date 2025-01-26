@@ -1,6 +1,7 @@
 // src/context/UserContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import getUsernameFromJwt from "../utils/getUsernameFromJwt";
+import { toast } from "react-toastify";
 
 interface UserContextProps {
   username: string | null;
@@ -28,7 +29,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         const fetchedUsername = await getUsernameFromJwt();
         setUsername(fetchedUsername);
       } catch (error) {
-        console.error("获取用户名失败:", error);
+        toast.error("获取用户名失败:" + error);
         setUsername(null);
       } finally {
         setLoading(false);

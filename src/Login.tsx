@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext"; // 导入 UserContext
 import getUsernameFromJwt from "./utils/getUsernameFromJwt"; // 导入解析用户名的工具
 import axiosInstance from "./AxiosInstance";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -25,15 +26,14 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("/api/v1/users/login", credentials, {
+      await axiosInstance.post("/api/v1/users/login", credentials, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: false,
       });
 
-      console.log("Login success:", response.data);
-      console.log("Cookies:", document.cookie);
+      toast.success("Login Successful!");
       // 登录成功后跳转到首页
 
       // 解析 JWT 获取用户名
@@ -42,8 +42,7 @@ const Login: React.FC = () => {
 
       navigate("/");
     } catch (error) {
-      console.error("Error:", error);
-      // 处理错误
+      toast.error("Login Failed!");
     }
   };
 
