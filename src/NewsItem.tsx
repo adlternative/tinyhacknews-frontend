@@ -4,7 +4,7 @@ import axios, { AxiosError } from "axios";
 import { useLocation } from "react-router-dom";
 import "./NewsItem.css";
 import NavBar from "./components/NavBar";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";
 import { Comment, News, NewsCommentsResponse } from "./types";

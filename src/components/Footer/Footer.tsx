@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Footer.css";
 import { useNavigate } from "react-router-dom"; // 确保你已经安装并设置了 react-router-dom
-import "./Footer.css";
+
 // Guidelines | FAQ | Lists | API | Security | Legal | Apply to YC | Contact
 //                              Search:[      ]
 const Footer: React.FC = () => {

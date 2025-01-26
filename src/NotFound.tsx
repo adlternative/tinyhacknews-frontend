@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./NotFound.css";
 import NavBar from './components/NavBar';
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 
 const NotFound: React.FC = () => {
 

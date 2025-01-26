@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import NavBar from './components/NavBar';
 import NewsList from "./NewsList";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 import { NewsListResponse, NewsListItem } from "./types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "./AxiosInstance";
