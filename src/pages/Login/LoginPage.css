@@ -47,7 +47,7 @@
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   height: 100vh; /* 占满整个视口高度 */
-  background-color: #ec4407; /* 可选：背景颜色 */
+  background-color: rgb(246, 246, 239);
 }
 
 .login-container {
