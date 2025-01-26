@@ -12,7 +12,8 @@
       "pages/*": ["pages/*"],
       "context/*": ["context/*"],
       "utils/*": ["utils/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "hooks/*": ["hooks/*"],
      }
   }
 }

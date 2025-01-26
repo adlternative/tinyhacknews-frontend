@@ -21,6 +21,7 @@ export default defineConfig({
       contexts: path.resolve(__dirname, "src/contexts/"),
       utils: path.resolve(__dirname, "src/utils/"),
       types: path.resolve(__dirname, "src/types/"),
+      hooks: path.resolve(__dirname, "src/hooks/"),
       // 添加其他别名，如果需要
     },
   },
