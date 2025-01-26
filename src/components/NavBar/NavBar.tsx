@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import "./NavBar.css";
-import { UserContext } from "./context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import axiosInstance from "./AxiosInstance";
+import axiosInstance from "../../AxiosInstance";
 import { toast } from "react-toastify";
 
 const NavBar: React.FC = () => {
@@ -23,12 +23,16 @@ const NavBar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axiosInstance.post("/api/v1/users/logout", {}, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const response = await axiosInstance.post(
+        "/api/v1/users/logout",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       console.log("Logout success:", response.data);
       // 清理 jwt cookie

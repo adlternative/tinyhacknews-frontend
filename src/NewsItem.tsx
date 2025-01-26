@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { useLocation } from "react-router-dom";
 import "./NewsItem.css";
-import NavBar from "./NavBar";
+import NavBar from "./components/NavBar";
 import Footer from "./Footer";
 import relativeTimeFromISOString from "./utils/relativeTimeFromISOString";
 import CommentItem from "./CommentItem";

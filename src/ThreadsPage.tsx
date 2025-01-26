@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ThreadsPage.css";
 import CommentList from "./CommentList";
-import NavBar from "./NavBar";
+import NavBar from './components/NavBar';
 import Footer from "./Footer";
 import { CommentWithNewsMeta, CommentListResponse } from "./types";
 import { useLocation } from "react-router-dom";

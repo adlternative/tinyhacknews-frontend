@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./context/UserContext";
-import NavBar from "./NavBar";
+import NavBar from './components/NavBar';
 import axiosInstance from "./AxiosInstance";
 import { UserInfo } from "./types";
 import "./User.css";

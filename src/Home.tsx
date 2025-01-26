@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import NavBar from "./NavBar";
+import NavBar from './components/NavBar';
 import NewsList from "./NewsList";
 import Footer from "./Footer";
 import { NewsListItem, NewsListResponse } from "./types";
