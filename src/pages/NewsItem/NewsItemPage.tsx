@@ -330,8 +330,7 @@ const NewsItem: React.FC = () => {
               <span className="news-time">
                 {RelativeTimeFromISOString(news.createdAt)}
               </span>{" "}
-              | <a href="#">hide</a> | <a href="#">past</a> |{" "}
-              <a href="#">favorite</a> |
+              <a href="#">past</a> | <a href="#">favorite</a> |
               <a href="#">
                 {news.commentsCount === 0
                   ? "discuss"

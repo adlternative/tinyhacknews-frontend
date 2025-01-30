@@ -120,9 +120,6 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
                   unvote
                 </button>
               )}
-              <a href="#" className="with-vertical-bar">
-                hide
-              </a>
               <a href={`/item?id=${item.id}`} className="with-vertical-bar">
                 {item.commentsCount === 0
                   ? "discuss"
