@@ -1,40 +1,36 @@
 /* srcomponents/FaqPage.css */
 
-.faq-container {
+.faqContainer {
   display: flex;
   flex-direction: column;
   align-items: center; /* 使整个盒子居中 */
   padding: 20px;
   text-align: left;
+  width: 50%;
+  margin: auto 0;
+
 }
 
-.faq-list {
+.faqList {
   background-color: rgb(246, 246, 239);
-  width: 35%;
   margin: 10px;
 }
 
-.qa-box {
+.qaBox {
   padding: 20px;
 }
 
-.faq-icon {
+.faqIcon {
   width: 80px;
 }
 
-.faq-list .question {
+.faqList .question {
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 10px;
 }
 
-.faq-list .answer {
+.faqList .answer {
   font-size: 13px;
   line-height: 1.5;
-}
-
-.faq-list .divider-line {
-  height: 5px;
-  background-color: #ff6600; /* 橙红色背景 */
-  margin-bottom: 20px; /* 下边距以区分其他元素 */
 }

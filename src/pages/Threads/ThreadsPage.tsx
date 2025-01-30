@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ThreadsPage.css";
 import CommentList from "components/CommentList";
 import NavBar from 'components/NavBar';
 import Footer from "components/Footer";
@@ -7,6 +6,8 @@ import { CommentWithNewsMeta, CommentListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import sharedStyles from "styles/shared.module.css";
+// import styles from "./ThreadsPage.module.css";
 
 const ThreadsPage: React.FC = () => {
   const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
@@ -58,9 +59,9 @@ const ThreadsPage: React.FC = () => {
   }, [username]);
 
   return (
-    <div className="threads-page-container">
+    <div className={sharedStyles.homeContainer}>
       <NavBar />
-      {error && <p className="error-message">Error: {error}</p>}
+      {error && <p className={sharedStyles.errorMessage}>Error: {error}</p>}
       {!error && <CommentList comments={comments} currentPage={pageNum} />}
       <Footer />
     </div>

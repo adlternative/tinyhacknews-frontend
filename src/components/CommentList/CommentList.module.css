@@ -1,59 +1,59 @@
-.comment-list {
+.commentList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.comment-list-item {
+.commentListItem {
   display: flex;
   align-items: baseline;
   margin-bottom: 16px;
 }
 
-.comment-list-number {
+.commentListNumber {
   width: 30px;
   text-align: right;
   margin-right: 10px;
   color: #666;
 }
 
-.vote-triangle {
+.voteTriangle {
   width: 10px; /* Adjust size as needed */
   height: 10px;
 }
 
-.vote-button {
+.voteButton {
   background-color: transparent;
   margin-right: 5px;
 }
 
-.comment-content-with-meta {
+.commentContentWithMeta {
   flex: 1;
 }
 
-.comment-meta {
+.commentMeta {
   font-size: 12px;
   color: #999;
   margin-bottom: 4px;
 }
 
-.comment-author {
+.commentAuthor {
   font-weight: bold;
 }
 
-.comment-content {
+.commentContent {
   font-size: 14px;
   color: #333;
 }
 
-.comment-pagination {
+.commentPagination {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.comment-list-more {
+.commentListMore {
   margin-top: 10px;
   /* 颜色：灰色 */
   color: #555;
@@ -62,7 +62,7 @@
   text-decoration: none;
 }
 
-.comment-page-info {
+.commentPageInfo {
   font-size: 14px;
   color: #555;
 }

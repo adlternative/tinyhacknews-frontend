@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./SubmitPage.css"; // 假设这是样式文件路径
 import NavBar from 'components/NavBar';
 import axios from "axios";
 import { toast } from "react-toastify";
+import shardStyles from "styles/shared.module.css";
+import styles from "./SubmitPage.module.css";
 
 const Submit: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -53,17 +54,14 @@ const Submit: React.FC = () => {
       });
   };
   return (
-    <div className="submit-container">
+    <div className={shardStyles.homeContainer}>
       <NavBar />
-      {error && <p className="submit-news-error">{error}</p>}
-      {success && <p className="submit-news-success">Submit Success!</p>}
-
-      <form className="submit-news-form" onSubmit={handleSubmit}>
-        <label className="submit-news-label" htmlFor="title">
+      <form className={styles.submitNewsForm} onSubmit={handleSubmit}>
+        <label className={styles.submitNewsLabel} htmlFor="title">
           title
         </label>
         <input
-          className="submit-news-input"
+          className={styles.submitNewsInput}
           type="text"
           id="title"
           value={title}
@@ -71,32 +69,32 @@ const Submit: React.FC = () => {
           required
         />
 
-        <label className="submit-news-label" htmlFor="url">
+        <label className={styles.submitNewsLabel} htmlFor="url">
           url
         </label>
         <input
-          className="submit-news-input"
+          className={styles.submitNewsInput}
           type="url"
           id="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
 
-        <label className="submit-news-label" htmlFor="text">
+        <label className={styles.submitNewsLabel} htmlFor="text">
           text
         </label>
         <textarea
           id="text"
-          className="submit-news-input-textarea"
+          className={styles.submitNewsInputTextArea}
           value={text}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
 
-        <button className="submit-news-button" type="submit" disabled={loading}>
+        <button className={styles.submitNewsButton} type="submit" disabled={loading}>
           {loading ? "Submiting..." : "Submit"}
         </button>
 
-        <p className="submit-news-hit">
+        <p className={styles.submitNewsHint}>
           {" "}
           Leave url blank to submit a question for discussion. If there is no
           url, text will appear at the top of the thread. If there is a url,

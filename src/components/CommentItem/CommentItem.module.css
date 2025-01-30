@@ -1,11 +1,11 @@
 /* srcomponents/CommentItem.css */
 
-.comment-item {
+.commentItem {
   padding: 15px 20px;
   margin-bottom: 15px;
 }
 
-.comment-header {
+.commentHeader {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -14,17 +14,17 @@
 }
 
 /* .comment-header 的所有子元素设置 margin-{left,right} */
-.comment-header > * {
+.commentHeader > * {
   margin-right: 10px;
   font-size: 13px;
   color: #7f8c8d;
 }
 
-.comment-author {
+.commentAuthor {
   font-weight: bold;
 }
 
-.comment-text {
+.commentText {
   font-size: 1em;
   line-height: 1.6;
   color: #34495e;
@@ -32,7 +32,7 @@
 }
 
 /* Reply Button */
-.add-child-comment-button {
+.addChildCommentButton {
   margin-top: 10px;
   border-radius: 4px;
   align-self: flex-start;
@@ -43,13 +43,13 @@
 }
 
 /* Reply Box */
-.reply-box {
+.replyBox {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.reply-box textarea {
+.replyBox textarea {
   resize: vertical;
   padding: 8px;
   font-size: 14px;
@@ -60,14 +60,14 @@
 }
 
 /* Reply Buttons Container */
-.reply-buttons {
+.replyButtons {
   display: flex;
   gap: 10px;
   margin-top: 5px;
 }
 
 /* Submit Button */
-.reply-buttons button:first-child {
+.replyButtons button:first-child {
   background-color: #4caf50; /* 绿色背景 */
   color: white;
   border: none;
@@ -79,12 +79,12 @@
 }
 
 /* Submit Button Hover */
-.reply-buttons button:first-child:hover {
+.replyButtons button:first-child:hover {
   background-color: #45a049;
 }
 
 /* Cancel Button */
-.reply-buttons button:last-child {
+.replyButtons button:last-child {
   background-color: #f44336; /* 红色背景 */
   color: white;
   border: none;
@@ -96,12 +96,12 @@
 }
 
 /* Cancel Button Hover */
-.reply-buttons button:last-child:hover {
+.replyButtons button:last-child:hover {
   background-color: #da190b;
 }
 
 /* Optional: Disable Button Styles */
-.reply-box button:disabled {
+.replyBox button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -114,7 +114,7 @@
 }
 
 /* Comments List */
-.comment-children {
+.commentChildren {
   margin-left: 30px;
   margin-top: 10px;
   padding-left: 15px;

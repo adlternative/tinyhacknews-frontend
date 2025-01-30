@@ -1,6 +1,6 @@
 /* srcomponents/Item.css */
 
-.page-container {
+.pageContainer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -8,7 +8,7 @@
 }
 
 /* Main content area */
-.news-item-container {
+.newsItemContainer {
   flex: 1;
   padding: 20px;
   background-color: rgb(246, 246, 239); /* Updated background color */
@@ -17,7 +17,7 @@
 }
 
 /* Title and URL container */
-.news-title-container {
+.newsTitleContainer {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -25,29 +25,29 @@
 }
 
 /* Title styles */
-.news-title {
+.newsTitle {
   margin-bottom: 10px;
   font-size: 17px;
 }
 
-.news-title a {
+.newsTitle a {
   text-decoration: none;
   color: #333;
 }
 
 /* Small URL next to the title */
-.news-url-small {
+.newsUrlSmall {
   font-size: 14px;
   color: gray;
   text-decoration: none;
 }
 
-.news-url-small:hover {
+.newsUrlSmall:hover {
   text-decoration: underline;
 }
 
 /* Metadata Bar */
-.news-meta {
+.newsMeta {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -57,29 +57,29 @@
   color: #555;
 }
 
-.news-meta span,
-.news-meta a {
+.newsMeta span,
+.newsMeta a {
   margin-right: 4px;
   margin-left: 4px;
 }
 
-.news-meta a:hover {
+.newsMeta a:hover {
   text-decoration: underline;
 }
 
-.news-points {
+.newsPoints {
   font-weight: bold;
 }
 
-.news-author {
+.newsAuthor {
   font-weight: bold;
 }
 
-.news-time {
+.newsTime {
   color: #888;
 }
 
-.news-text {
+.newsText {
   font-size: 16px;
   line-height: 1.6;
   color: #34495e;
@@ -87,13 +87,13 @@
 }
 
 /* Comment Input and Button */
-.add-comment {
+.addComment {
   margin: 20px 0;
   display: flex;
   flex-direction: column;
 }
 
-.add-comment textarea {
+.addComment textarea {
   resize: vertical;
   padding: 10px;
   font-size: 14px;
@@ -103,7 +103,7 @@
   height: 150px;
 }
 
-.add-comment button {
+.addComment button {
   margin-top: 10px;
   border: 1px solid gray;
   border-radius: 4px;
@@ -118,11 +118,11 @@
 }
 
 /* Comments Section */
-.comments-section {
+.commentsSection {
   margin-top: 30px;
 }
 
-.comments-section h3 {
+.commentsSection h3 {
   font-size: 22px;
   margin-bottom: 15px;
   color: #333;
@@ -144,12 +144,12 @@
 }
 
 /* Comments List */
-.comments-list {
+.commentsList {
   list-style: none;
   padding: 0;
 }
 
-.voting-section {
+.votingSection {
   width: 30px; /* Fixed width to reserve space */
   display: flex;
   align-items: center;
@@ -157,30 +157,20 @@
   margin-right: 10px; /* Adjust spacing as needed */
 }
 
-.vote-button {
+.voteButton {
   background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 }
 
-.vote-button.hidden {
-  visibility: hidden; /* Hide button but keep space */
-}
-
-.vote-triangle {
+.voteTriangle {
   width: 10px; /* Adjust size as needed */
   height: 10px;
 }
 
-.self-post-tag {
-  color: red;
-  padding: 1px 3px;
-  font-size: 12px; /* Adjust font size as needed */
-}
-
 /* Unvote Button Styling */
-.unvote-button {
+.unvoteButton {
   background-color: transparent;
   border: none;
   color: #555;
@@ -189,6 +179,6 @@
   margin-left: 5px;
 }
 
-.unvote-button:hover {
+.unvoteButton:hover {
   text-decoration: underline;
 }

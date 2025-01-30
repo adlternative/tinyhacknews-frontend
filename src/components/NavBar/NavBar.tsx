@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import "./NavBar.css";
 import { UserContext } from "contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import styles from "./NavBar.module.css";
 
 const NavBar: React.FC = () => {
   const { username, setUsername } = useContext(UserContext);
@@ -47,40 +47,40 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <nav className={styles.navbar}>
+      <div className={styles.navbarLeft}>
         {/* 包装图标和标题，使其都可点击跳转到首页 */}
-        <a href="/" className="navbar-home-link">
-          <img src="/y18.svg" alt="Y18N Icon" className="navbar-icon" />
-          <span className="navbar-title">Tiny Hacker News</span>
+        <a href="/" className={styles.navbarHomeLink}>
+          <img src="/y18.svg" alt="Y18N Icon" className={styles.navbarIcon} />
+          <span className={styles.navbarTitle}>Tiny Hacker News</span>
         </a>
         {links.map((link, index) => (
           <React.Fragment key={index}>
-            <a href={link.href} className="navbar-link">
+            <a href={link.href} className={styles.navbarLink}>
               {link.label}
             </a>
             {index !== links.length - 1 && (
-              <span className="navbar-separator">|</span>
+              <span className={styles.navbarSeparator}>|</span>
             )}
           </React.Fragment>
         ))}
       </div>
-      <div className="navbar-right">
+      <div className={styles.navbarRight}>
         {username ? (
           <>
             <a
               href={`/users?name=${encodeURIComponent(username)}`}
-              className="navbar-username"
+              className={styles.navbarUserName}
             >
               {username}
             </a>
-            <span className="navbar-separator">|</span>
-            <button className="navbar-logout" onClick={handleLogout}>
+            <span className={styles.navbarSeparator}>|</span>
+            <button className={styles.navbarLogout} onClick={handleLogout}>
               logout
             </button>
           </>
         ) : (
-          <a href="/login" className="navbar-link">
+          <a href="/login" className={styles.navbarLink}>
             login
           </a>
         )}

@@ -1,23 +1,24 @@
-.register-form {
+.registerForm {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  width: 50%;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  flex-direction: column;
 }
 
-.form-group {
+.formGroup {
   margin-bottom: 15px;
+  width: 100%;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
 
-.form-group input {
+.formGroup input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -25,39 +26,30 @@ label {
   border-radius: 4px;
 }
 
-.form-group label {
+.formGroup label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.register-button {
-  width: 100%;
+.registerButton {
+  width: 50%;
   padding: 10px;
   background-color: orange;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 16px;
-  cursor: pointer;
 }
 
-.register-button:hover {
+.registerButton:hover {
   background-color: orangered;
 }
 
-.register-wrapper {
+.registerContainer {
   display: flex;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
+  flex-direction: column;
   height: 100vh; /* 占满整个视口高度 */
-  background-color: rgb(246, 246, 239);
-}
-
-.register-container {
-  min-width: 400px;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
 }

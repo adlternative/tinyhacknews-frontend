@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./NewsList.css";
 import { NewsListItem } from "types/types";
 import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
 import GetPureURI from "utils/URI";
 import { UserContext } from "contexts/UserContext";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import styles from "./NewsList.module.css";
+import sharedStyles from "styles/shared.module.css";
 
 interface Props {
   news: NewsListItem[];
@@ -62,44 +63,46 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
   };
 
   return (
-    <div className="news-list-container">
-      <ul className="news-list">
+    <div className={styles.newsListContainer}>
+      <ul className={styles.newsList}>
         {newsList.map((item, index) => (
-          <li key={item.id} className="news-list-item">
-            <div className="news-list-item-left-part">
-              <span className="news-list-number">
+          <li key={item.id} className={styles.newsListItem}>
+            <div className={styles.newsListItemLeftPart}>
+              <span className={styles.newsListNumber}>
                 {(currentPage - 1) * 30 + index + 1}.
               </span>
-              <div className="voting-section">
+              <div className={styles.votingSection}>
                 {/* 始终渲染投票按钮或自我标签，占据相同空间 */}
                 {item.author.name === username ? (
-                  <span className="self-post-tag">*</span>
+                  <span className={sharedStyles.selfTag}>*</span>
                 ) : (
                   <button
-                    className={`vote-button ${item.hasVote ? "hidden" : ""}`}
+                    className={`${styles.voteButton} ${
+                      item.hasVote ? sharedStyles.hidden : ""
+                    }`}
                     onClick={() => handleVote(item.id)}
                     aria-label={`Vote for ${item.title}`}
                   >
                     <img
                       src="triangle.svg"
                       alt="Vote"
-                      className="vote-triangle"
+                      className={styles.voteTriangle}
                     />
                   </button>
                 )}
               </div>
             </div>
-            <div className="news-content">
+            <div className={styles.newsContent}>
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="news-list-title-link"
+                className={styles.newsListTitleLink}
               >
-                <h2 className="news-list-item-title">{item.title}</h2>
+                <h2 className={styles.newsListItemTitle}>{item.title}</h2>
               </a>
               <a
-                className="news-list-item-link"
+                className={styles.newsListItemLink}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -107,20 +110,23 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
                 {`(` + GetPureURI(item.url) + `)`}
               </a>
             </div>
-            <div className="news-list-item-meta">
+            <div className={styles.newsListItemMeta}>
               <span> {item.pointsCount} points </span>
               <a href={`/users?name=${item.author.name}`}>{item.author.name}</a>
               <span> {RelativeTimeFromISOString(item.updatedAt)} </span>
               {item.hasVote && (
                 <button
-                  className="unvote-button with-vertical-bar"
+                  className={`${styles.withVerticalBar} ${styles.unvoteButton}`}
                   onClick={() => handleUnvote(item.id)}
                   aria-label={`unvote for ${item.title}`}
                 >
                   unvote
                 </button>
               )}
-              <a href={`/item?id=${item.id}`} className="with-vertical-bar">
+              <a
+                href={`/item?id=${item.id}`}
+                className={styles.withVerticalBar}
+              >
                 {item.commentsCount === 0
                   ? "discuss"
                   : item.commentsCount + " comments"}
@@ -131,7 +137,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
       </ul>
 
       {/* 灰色的 More 展示下一页的链接 */}
-      <a className="news-list-more" href={getNextPageUrl()}>
+      <a className={styles.newsListMore} href={getNextPageUrl()}>
         More
       </a>
     </div>

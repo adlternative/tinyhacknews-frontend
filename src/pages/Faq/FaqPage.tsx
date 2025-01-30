@@ -1,5 +1,6 @@
 import React from "react";
-import "./FaqPage.css";
+import shardStyles from "styles/shared.module.css";
+import styles from "./FaqPage.module.css";
 
 interface QAItem {
   question: string;
@@ -26,19 +27,19 @@ const faqData: QAItem[] = [
 
 const FaqPage: React.FC = () => {
   return (
-    <div className="faq-container">
+    <div className={styles.faqContainer}>
       {/* Large icon at the top of the page */}
-      <img src="/y18.svg" alt="FAQ Icon" className="faq-icon" />
+      <img src="/y18.svg" alt="FAQ Icon" className={styles.faqIcon} />
 
       {/* FAQ list */}
-      <div className="faq-list">
+      <div className={styles.faqList}>
         {faqData.map((item, index) => (
-          <div key={index} className="qa-box">
-            <div className="question">{item.question}</div>
-            <div className="answer">{item.answer}</div>
+          <div key={index} className={styles.qaBox}>
+            <div className={styles.question}>{item.question}</div>
+            <div className={styles.answer}>{item.answer}</div>
           </div>
         ))}
-        <hr className="divider-line" />
+        <hr className={shardStyles.dividerLine} />
       </div>
     </div>
   );

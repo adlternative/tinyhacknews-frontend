@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./NewsItemPage.css";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
 import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
@@ -12,6 +11,8 @@ import GetPureURI from "utils/URI";
 import axiosInstance from "utils/AxiosInstance";
 import { UserContext } from "contexts/UserContext"; // Import UserContext
 import { toast } from "react-toastify";
+import sharedStyles from "styles/shared.module.css";
+import styles from "./NewsItemPage.module.css";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -195,7 +196,7 @@ const NewsItem: React.FC = () => {
                     };
                   }
                 }
-                return comment; // 保持不变，避免引用变化
+                return comment; // 保持不变避免引用变化
               });
             };
 
@@ -278,39 +279,41 @@ const NewsItem: React.FC = () => {
   // Determineif the current user is the author
 
   return (
-    <div className="page-container">
+    <div className={sharedStyles.homeContainer}>
       {/* NavBar */}
       <NavBar />
 
       {/* Main content area */}
-      <div className="news-item-container">
+      <div className={styles.newsItemContainer}>
         {userLoading || loadingNews ? (
-          <div className="loading">Loading news content...</div>
+          <div className={styles.loading}>Loading news content...</div>
         ) : errorNews ? (
-          <div className="error">{errorNews}</div>
+          <div className={styles.error}>{errorNews}</div>
         ) : news ? (
           <>
             {/* News Title and URL */}
-            <div className="news-title-container">
+            <div className={styles.newsTitleContainer}>
               {/* Voting Section on the Left */}
               {username === news.author.name ? (
-                <span className="self-post-tag">*</span>
+                <span className={sharedStyles.selfTag}>*</span>
               ) : (
                 <button
-                  className={`vote-button ${news.hasVote ? "hidden" : ""}`}
+                  className={`${styles.voteButton} ${
+                    news.hasVote ? sharedStyles.hidden : ""
+                  }`}
                   onClick={handleVote}
                   aria-label={`Vote for ${news.title}`}
                 >
                   <img
                     src="triangle.svg"
                     alt="Vote"
-                    className="vote-triangle"
+                    className={styles.voteTriangle}
                   />
                 </button>
               )}
 
               {/* Title and URL */}
-              <h2 className="news-title">
+              <h2 className={styles.newsTitle}>
                 <a href={news.url} target="_blank" rel="noopener noreferrer">
                   {news.title}
                 </a>
@@ -319,22 +322,25 @@ const NewsItem: React.FC = () => {
                 href={news.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="news-url-small"
+                className={styles.newsUrlSmall}
               >
                 ({GetPureURI(news.url)})
               </a>
             </div>
 
             {/* Metadata Bar */}
-            <div className="news-meta">
-              <span className="news-points">
+            <div className={styles.newsMeta}>
+              <span className={styles.newsPoints}>
                 {news.pointsCount ? news.pointsCount : 0} points
               </span>{" "}
               by
-              <a href={`/user?id=${news.author.name}`} className="news-author">
+              <a
+                href={`/user?id=${news.author.name}`}
+                className={styles.newsAuthor}
+              >
                 {news.author.name}
               </a>
-              <span className="news-time">
+              <span className={styles.newsTime}>
                 {RelativeTimeFromISOString(news.createdAt)}
               </span>{" "}
               <a href="#">past</a> | <a href="#">favorite</a> |
@@ -346,7 +352,7 @@ const NewsItem: React.FC = () => {
               {/* Unvote Button for Author's Own News */}
               {news.hasVote && (
                 <button
-                  className="unvote-button with-vertical-bar"
+                  className={`${styles.withVerticalBar} ${styles.unvoteButton}`}
                   onClick={handleUnvote}
                   aria-label={`Unvote for ${news.title}`}
                 >
@@ -356,32 +362,32 @@ const NewsItem: React.FC = () => {
             </div>
 
             {/* News Content */}
-            {news.text && <p className="news-text">{news.text}</p>}
+            {news.text && <p className={styles.newsText}>{news.text}</p>}
 
             {/* Comment Input and Button */}
-            <div className="add-comment">
+            <div className={styles.addComment}>
               <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Add your comment..."
                 rows={4}
               ></textarea>
-              {submitError && <div className="error">{submitError}</div>}
+              {submitError && <div className={styles.error}>{submitError}</div>}
               <button onClick={handleAddComment} disabled={submitting}>
                 Add Comment
               </button>
             </div>
 
             {/* Comments Section */}
-            <div className="comments-section">
+            <div className={styles.commentsSection}>
               {loadingComments ? (
-                <div className="loading">Loading comments...</div>
+                <div className={styles.loading}>Loading comments...</div>
               ) : errorComments ? (
-                <div className="error">{errorComments}</div>
+                <div className={styles.error}>{errorComments}</div>
               ) : comments.length === 0 ? (
                 <p>No comments yet.</p>
               ) : (
-                <div className="comments-list">
+                <div className={styles.commentsList}>
                   {comments.map((comment) => (
                     <CommentItem
                       key={comment.id}

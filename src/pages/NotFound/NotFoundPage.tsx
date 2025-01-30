@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
-import "./NotFoundPage.css";
-import NavBar from 'components/NavBar';
+import React from "react";
+import styles from "./NotFoundPage.module.css";
+import NavBar from "components/NavBar";
 import Footer from "components/Footer";
+import sharedStyles from "styles/shared.module.css";
 
 const NotFound: React.FC = () => {
-
   return (
-    <div className="home-container">
+    <div className={sharedStyles.homeContainer}>
       <NavBar />
-      <div className="not-found-container">
-        <div className="not-found-text">
-          <span className="large-text">404</span>
-          <span className="small-text">Not Found</span>
+      <div className={styles.notFoundContainer}>
+        <div className={styles.notFoundText}>
+          <span className={styles.largeText}>404</span>
+          <span className={styles.smallText}>Not Found</span>
         </div>
       </div>
       <Footer />

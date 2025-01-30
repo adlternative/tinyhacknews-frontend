@@ -1,38 +1,33 @@
-.guide-lines-container {
+.guideLinesContainer {
   display: flex;
   flex-direction: column;
   align-items: center; /* 使整个盒子居中 */
   padding: 20px;
   text-align: left;
+  width: 50%;
+  margin: auto 0;
 }
 
-.guide-lines-list {
+.guideLinesList {
   background-color: rgb(246, 246, 239);
-  width: 35%;
   margin: 10px;
 }
 
-.guideline-box {
+.guideLineBox {
   padding: 20px;
 }
 
-.guide-lines-list .title {
+.guideLinesList .title {
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 15px;
 }
 
-.guide-lines-list .description {
+.guideLinesList .description {
   font-size: 13px;
   line-height: 1.5;
 }
 
-.guide-lines-icon {
+.guideLinesIcon {
   width: 80px;
-}
-
-.guide-lines-list .divider-line {
-  height: 5px;
-  background-color: #ff6600; /* 橙红色背景 */
-  margin-bottom: 20px; /* 下边距以区分其他元素 */
 }

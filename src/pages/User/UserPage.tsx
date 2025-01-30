@@ -4,9 +4,10 @@ import { UserContext } from "contexts/UserContext";
 import NavBar from "components/NavBar";
 import axiosInstance from "utils/AxiosInstance";
 import { UserInfo } from "types/types";
-import "./UserPage.css";
+import styles from "./UserPage.module.css";
 import FormatDate from "utils/DateUtils";
 import { toast } from "react-toastify";
+import shardStyles from "styles/shared.module.css";
 
 const User: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -38,8 +39,6 @@ const User: React.FC = () => {
 
       try {
         let response;
-        console.log("nameParam", nameParam);
-        console.log("username", username);
 
         if (isOwnProfile) {
           // If the name parameter is the same as the current username, call /api/v1/users/me
@@ -111,9 +110,9 @@ const User: React.FC = () => {
   };
 
   return (
-    <div className="user-container">
+    <div className={shardStyles.homeContainer}>
       <NavBar />
-      <div className="user-info-box">
+      <div className={styles.userInfoBox}>
         {userLoading ? (
           <div>Loading user information...</div>
         ) : loading ? (
@@ -123,23 +122,23 @@ const User: React.FC = () => {
         ) : !userData ? (
           <div>User information not found.</div>
         ) : (
-          <div className="user-setting-info">
-            <div className="info-row">
+          <div className={styles.userSettingInfo}>
+            <div className={styles.infoRow}>
               <label htmlFor="username">user:</label>
               <span id="username">{userData.name}</span>
             </div>
 
-            <div className="info-row">
+            <div className={styles.infoRow}>
               <label>created:</label>
               <span>{FormatDate(new Date(userData.createdAt))}</span>
             </div>
 
-            <div className="info-row">
+            <div className={styles.infoRow}>
               <label>karma:</label>
               <span>{userData.karma}</span>
             </div>
 
-            <div className="info-row">
+            <div className={styles.infoRow}>
               <label htmlFor="about">about:</label>
               {isOwnProfile ? (
                 <textarea
@@ -148,14 +147,14 @@ const User: React.FC = () => {
                   onChange={(e) => setAbout(e.target.value)}
                 />
               ) : (
-                <p className="about-text">
+                <p className={styles.aboutText}>
                   {userData.about || "No about information provided."}
                 </p>
               )}
             </div>
 
             {isOwnProfile && (
-              <div className="info-row">
+              <div className={styles.infoRow}>
                 <label htmlFor="email">email:</label>
                 <input
                   id="email"
@@ -168,7 +167,7 @@ const User: React.FC = () => {
 
             {isOwnProfile && updateStatus && (
               <div
-                className={`update-status ${
+                className={`${styles.updateStatus} ${
                   updateStatus.includes("successfully") ? "success" : "error"
                 }`}
               >
@@ -178,7 +177,7 @@ const User: React.FC = () => {
 
             {isOwnProfile && (
               <button
-                className="update-button"
+                className={styles.updateButton}
                 onClick={updateUser}
                 disabled={updating}
               >

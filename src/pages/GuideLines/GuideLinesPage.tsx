@@ -1,5 +1,6 @@
 import React from "react";
-import "./GuideLinesPage.css";
+import shardStyles from "styles/shared.module.css";
+import styles from "./GuideLinesPage.module.css";
 
 interface GuidelineItem {
   title: string;
@@ -31,19 +32,19 @@ const guidelinesData: GuidelineItem[] = [
 
 const GuideLinesPage: React.FC = () => {
   return (
-    <div className="guide-lines-container">
+    <div className={styles.guideLinesContainer}>
       {/* Large icon at the top of the page */}
-      <img src="/y18.svg" alt="Guidelines Icon" className="guide-lines-icon" />
+      <img src="/y18.svg" alt="Guidelines Icon" className={styles.guideLinesIcon} />
 
       {/* Guidelines list */}
-      <div className="guide-lines-list">
+      <div className={styles.guideLinesList}>
         {guidelinesData.map((item, index) => (
-          <div key={index} className="guideline-box">
-            <div className="title">{item.title}</div>
-            <div className="description">{item.description}</div>
+          <div key={index} className={styles.guidelineBox}>
+            <div className={styles.title}>{item.title}</div>
+            <div className={styles.description}>{item.description}</div>
           </div>
         ))}
-        <hr className="divider-line" />
+        <hr className={shardStyles.dividerLine} />
       </div>
     </div>
   );

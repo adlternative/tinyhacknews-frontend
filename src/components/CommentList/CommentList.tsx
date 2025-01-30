@@ -1,7 +1,7 @@
 import React from "react";
-import "./CommentList.css";
 import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
 import { CommentWithNewsMeta } from "types/types";
+import styles from "./CommentList.module.css";
 
 interface Props {
   comments: CommentWithNewsMeta[];
@@ -14,23 +14,23 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
   };
 
   return (
-    <div className="comment-list-container">
-      <ul className="comment-list">
+    <div className={styles.commentListContainer}>
+      <ul className={styles.commentList}>
         {comments.map((comment) => (
-          <li key={comment.id} className="comment-list-item">
+          <li key={comment.id} className={styles.commentListItem}>
             <button
-              className="vote-button"
+              className={styles.voteButton}
               onClick={() => handleVote(comment.id)}
               aria-label={`Vote for ${comment.text}`}
             >
               <img
                 src="triangle.svg"
                 alt="Vote"
-                className="vote-triangle"
+                className={styles.voteTriangle}
               />
             </button>
-            <div className="comment-content-with-meta">
-              <div className="comment-meta">
+            <div className={styles.commentContentWithMeta}>
+              <div className={styles.commentMeta}>
                 <span>{comment.author.name}</span>{" "}
                 <span>{RelativeTimeFromISOString(comment.createdAt)}</span> |{" "}
                 <span>on: </span>
@@ -42,14 +42,17 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
                   {comment.newsMeta.title}
                 </a>
               </div>
-              <div className="comment-content">
+              <div className={styles.commentContent}>
                 <p>{comment.text}</p>
               </div>
             </div>
           </li>
         ))}
       </ul>
-      <a className="comment-list-more" href={`/comments?p=${currentPage + 1}`}>
+      <a
+        className={styles.commentListMore}
+        href={`/comments?p=${currentPage + 1}`}
+      >
         More
       </a>
     </div>

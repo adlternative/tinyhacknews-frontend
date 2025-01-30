@@ -1,22 +1,21 @@
-.not-found-container {
+.notFoundContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(246, 246, 239);
 }
 
-.not-found-text {
+.notFoundText {
   text-align: center;
 }
 
-.large-text {
+.largeText {
   font-size: 10rem;
   color: rgb(255, 89, 0);
   display: block;
 }
 
-.small-text {
+.smallText {
   font-size: 2rem;
   color: rgb(255, 89, 0);
 }

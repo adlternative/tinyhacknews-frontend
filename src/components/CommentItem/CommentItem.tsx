@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
 import { Comment } from "types/types"; // Import the Comment interface
-import "./CommentItem.css"; // Optional: Separate CSS for CommentItem
+import styles from "./CommentItem.module.css";
 
 interface CommentItemProps {
   comment: Comment;
@@ -42,36 +42,36 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, addComment }) => {
   };
 
   return (
-    <div className="comment-item">
-      <div className="comment-header">
+    <div className={styles.commentItem}>
+      <div className={styles.commentHeader}>
         <a
           href={`/users?name=${comment.author.name}`}
-          className="comment-author"
+          className={styles.commentAuthor}
         >
           {comment.author.name}
         </a>
-        <span className="comment-date">
+        <span className={styles.commentDate}>
           {RelativeTimeFromISOString(comment.createdAt)}
         </span>
       </div>
-      <div className="comment-text">{comment.text}</div>
+      <div className={styles.commentText}>{comment.text}</div>
       {/* Reply Button */}
       <button
-        className="add-child-comment-button"
+        className={styles.addChildCommentButton}
         onClick={() => setShowReply(true)}
       >
         Reply
       </button>
       {/* Reply Box */}
       {showReply && (
-        <div className="reply-box">
+        <div className={styles.replyBox}>
           <textarea
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
             placeholder="Add your reply..."
           ></textarea>
-          {error && <div className="error">{error}</div>}
-          <div className="reply-buttons">
+          {error && <div className={styles.error}>{error}</div>}
+          <div className={styles.replyButtons}>
             <button onClick={handleReply} disabled={submitting}>
               Submit
             </button>
@@ -83,7 +83,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, addComment }) => {
       )}
       {/* Render Children Comments */}
       {comment.children && comment.children.length > 0 && (
-        <div className="comment-children">
+        <div className={styles.commentChildren}>
           {comment.children.map((child: Comment) => (
             <CommentItem
               key={child.id}

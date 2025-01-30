@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import "./RegisterPage.css";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import shardStyles from "styles/shared.module.css";
+import styles from "./RegisterPage.module.css";
+import NavBar from "components/NavBar";
+import Footer from "components/Footer";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -50,11 +53,12 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="register-wrapper">
-      <div className="register-container">
+    <div className={shardStyles.homeContainer}>
+      <NavBar />
+      <div className={styles.registerContainer}>
         <h1>Register</h1>
-        <form className="register-form" onSubmit={handleSubmit}>
-          <div className="form-group">
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -65,7 +69,7 @@ const Register: React.FC = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -76,7 +80,7 @@ const Register: React.FC = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -87,11 +91,12 @@ const Register: React.FC = () => {
               required
             />
           </div>
-          <button className="register-button" type="submit">
+          <button className={styles.registerButton} type="submit">
             Register
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

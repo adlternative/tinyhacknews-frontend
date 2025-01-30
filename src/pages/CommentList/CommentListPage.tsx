@@ -7,6 +7,7 @@ import { CommentWithNewsMeta, CommentListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import sharedStyles from "styles/shared.module.css";
 
 const CommentListPage: React.FC = () => {
   const [comments, setComments] = useState<CommentWithNewsMeta[]>([]);
@@ -47,9 +48,9 @@ const CommentListPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="comment-list-page-container">
+    <div className={sharedStyles.homeContainer}>
       <NavBar />
-      {error && <p className="error-message">Error: {error}</p>}
+      {error && <p className={sharedStyles.errorMessage}>Error: {error}</p>}
       <CommentList comments={comments} currentPage={pageNum} />
       <Footer />
     </div>

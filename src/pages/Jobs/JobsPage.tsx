@@ -1,10 +1,10 @@
 import React from "react";
-import "pages/Home/HomePage.css";
 import NavBar from "components/NavBar";
 import NewsList from "components/NewsList";
 import Footer from "components/Footer";
 import { useLocation } from "react-router-dom";
 import { useFetchNews } from "hooks/useFetchNews";
+import sharedStyles from "styles/shared.module.css";
 
 const Jobs: React.FC = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ const Jobs: React.FC = () => {
   const [loading, news, error] = useFetchNews({ pageNum, newsType: "JOBS" });
 
   return (
-    <div className="home-container">
+    <div className={sharedStyles.homeContainer}>
       <NavBar />
       {!loading && !error && <NewsList news={news} currentPage={pageNum} />}
       <Footer />

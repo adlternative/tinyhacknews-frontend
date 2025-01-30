@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
-import "./LoginPage.css"; // 如果需要，可以创建相应的CSS文件
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "contexts/UserContext"; // 导入 UserContext
 import GetUsernameFromJwt from "utils/GetUsernameFromJwt"; // 导入解析用户名的工具
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import shardStyles from "styles/shared.module.css";
+import styles from "./LoginPage.module.css";
+import NavBar from "components/NavBar";
+import Footer from "components/Footer";
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -47,11 +50,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-container">
+    <div className={shardStyles.homeContainer}>
+      <NavBar />
+      <div className={styles.loginContainer}>
         <h1>Login</h1>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -62,7 +66,7 @@ const Login: React.FC = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -73,11 +77,12 @@ const Login: React.FC = () => {
               required
             />
           </div>
-          <button className="login-button" type="submit">
+          <button className={styles.loginButton} type="submit">
             Login
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

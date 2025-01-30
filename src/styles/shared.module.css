@@ -1,0 +1,40 @@
+/* src/styles/shared.module.css */
+
+.homeContainer {
+  text-align: left; /* 覆盖 text-align: center */
+  font-family: Arial, sans-serif;
+  margin: 8px auto 0;
+  width: 100%;
+  background-color: rgb(246, 246, 239);
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dividerLine {
+  height: 5px;
+  background-color: #ff6600; /* 橙红色背景 */
+  margin-bottom: 20px; /* 下边距以区分其他元素 */
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.selfTag {
+  color: red;
+  padding: 1px 3px;
+  font-size: 12px; /* Adjust font size as needed */
+}

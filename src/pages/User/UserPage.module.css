@@ -1,4 +1,4 @@
-.user-setting-info {
+.userSettingInfo {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -7,28 +7,28 @@
   padding-left: 5px;
 }
 
-.user-info-box {
+.userInfoBox {
   background-color: rgb(246, 246, 239);
 }
 
-.info-row {
+.infoRow {
   display: flex;
   align-items: baseline;
   text-align: left;
 }
 
-.info-row label {
+.infoRow label {
   width: 15%;
   /* Ensure labels have more space */
   text-align:inherit;
 }
 
-.info-row span {
+.infoRow span {
   text-align:inherit;
 }
 
-.info-row textarea,
-.info-row input {
+.infoRow textarea,
+.infoRow input {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 50%;
@@ -36,17 +36,17 @@
   padding: 5px;
 }
 
-.info-row textarea {
+.infoRow textarea {
   height: 80px;
   resize: vertical;
 }
 
-.about-text {
+.aboutText {
   font-size: 15px;
   border-radius: 4px;
 }
 
-.update-button {
+.updateButton {
   color: black;
   border: 1px solid black;
   border-radius: 4px;
@@ -60,19 +60,19 @@
   margin-top: 10px;
 }
 
-.update-button:disabled {
+.updateButton:disabled {
   background-color: #9e9e9e;
   cursor: not-allowed;
 }
 
-.update-status {
+.updateStatus {
   margin-top: 10px;
 }
 
-.update-status.success {
+.updateStatus.success {
   color: green;
 }
 
-.update-status.error {
+.updateStatus.error {
   color: red;
 }

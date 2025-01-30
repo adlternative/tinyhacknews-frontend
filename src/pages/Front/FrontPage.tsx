@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./FrontPage.css";
-import NavBar from 'components/NavBar';
+import NavBar from "components/NavBar";
 import NewsList from "components/NewsList";
 import Footer from "components/Footer";
 import { NewsListItem, NewsListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
+import sharedStyles from "styles/shared.module.css";
+import styles from "./FrontPage.module.css";
 
 const FrontPage: React.FC = () => {
   const [news, setNews] = useState<NewsListItem[]>([]);
@@ -60,9 +61,9 @@ const FrontPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="front-page-container">
+    <div className={sharedStyles.homeContainer}>
       <NavBar />
-      {error && <p className="error-message">Error: {error}</p>}
+      {error && <p className={styles.errorMessage}>Error: {error}</p>}
       <NewsList news={news} currentPage={pageNum} />
       <Footer />
     </div>
