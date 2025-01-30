@@ -35,7 +35,7 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
                 <span>{RelativeTimeFromISOString(comment.createdAt)}</span> |{" "}
                 <span>on: </span>
                 <a
-                  href={`/news/${comment.newsId}`}
+                  href={`/item?id=${comment.newsId}`}
                   target="_blank"
                   rel="noreferrer"
                 >
