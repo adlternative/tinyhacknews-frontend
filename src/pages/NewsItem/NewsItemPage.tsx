@@ -1,7 +1,7 @@
 // srcomponents/NewsItem.tsx
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./NewsItemPage.css";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
@@ -29,6 +29,7 @@ const NewsItem: React.FC = () => {
   const [newComment, setNewComment] = useState<string>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   // Function to build comments tree from flat list
   const buildTree = (comments: Comment[]): Comment[] => {
@@ -74,6 +75,12 @@ const NewsItem: React.FC = () => {
       setNews(response.data);
     } catch (err) {
       if (axios.isAxiosError(err)) {
+        if (err.status === 404) {
+          // 跳转到 404 页面
+          navigate("/404");
+          return;
+        }
+
         setErrorNews(err.message);
       } else {
         setErrorNews("An unexpected error occurred");
