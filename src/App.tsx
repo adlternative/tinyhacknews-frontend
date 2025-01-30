@@ -10,6 +10,7 @@ import { UserProvider } from "contexts/UserContext";
 import NotFound from "pages/NotFound";
 import User from "pages/User";
 import NewsItem from "pages/NewsItem";
+import New from "pages/New";
 import Ask from "./pages/Ask";
 import Show from "pages/Show";
 import Jobs from "pages/Jobs";
@@ -42,7 +43,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/news" element={<Home />} />
+          <Route path="/news" element={<New />} />
           <Route path="/submit" element={<Submit />} />
           <Route path="/users" element={<User />} />
           <Route path="/item" element={<NewsItem />} />
