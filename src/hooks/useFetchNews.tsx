@@ -7,12 +7,14 @@ interface FetchNewsProps {
   pageNum?: number;
   pageSize?: number;
   newsType?: string;
+  order?: string;
 }
 
 export const useFetchNews = ({
   pageNum = 1,
   pageSize = 30,
   newsType,
+  order = "POINT",
 }: FetchNewsProps): [boolean, NewsListItem[], string | null] => {
   const [news, setNews] = useState<NewsListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ export const useFetchNews = ({
             params: {
               page_num: pageNum,
               page_size: pageSize,
+              order: order,
               ...(newsType ? { type: newsType } : {}),
             },
             headers: {
@@ -37,7 +40,7 @@ export const useFetchNews = ({
           }
         );
 
-        setNews(response.data.records);
+        setNews(response.data.list);
         setError(null);
       } catch (err) {
         toast.error(`fetch news failed, Error: ${err}`);

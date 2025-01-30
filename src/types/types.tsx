@@ -82,23 +82,17 @@ export interface CommentListResponse {
   total: number;
   size: number;
   current: number;
-  orders: any[];
-  optimizeCountSql: boolean;
-  searchCount: boolean;
-  countId: number | null;
-  maxLimit: number | null;
   pages: number;
 }
 
+export interface Page {
+  currentPageNum: number;
+  pageSize: number;
+  totalCount: number;
+  pagesCount: number;
+}
+
 export interface NewsListResponse {
-  records: NewsListItem[];
-  total: number;
-  size: number;
-  current: number;
-  orders: any[];
-  optimizeCountSql: boolean;
-  searchCount: boolean;
-  countId: number | null;
-  maxLimit: number | null;
-  pages: number;
+  list: NewsListItem[];
+  page: Page;
 }

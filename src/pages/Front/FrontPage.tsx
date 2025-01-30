@@ -48,7 +48,7 @@ const FrontPage: React.FC = () => {
           }
         );
 
-        setNews(response.data.records); // 假设返回数据结构中包含一个 news 数组
+        setNews(response.data.list); // 假设返回数据结构中包含一个 news 数组
         setError(null); // 清除之前的错误
       } catch (err: any) {
         toast.error("Error:", err);
