@@ -32,6 +32,7 @@ const Footer: React.FC = () => {
             className="search-input"
             type="text"
             value={searchQuery}
+            disabled={true}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </form>
