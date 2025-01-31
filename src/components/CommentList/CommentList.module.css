@@ -66,3 +66,8 @@
   font-size: 14px;
   color: #555;
 }
+
+.commentListContainer {
+  width: 100%;
+  height: 100%;
+}

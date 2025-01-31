@@ -1,10 +1,8 @@
 import React from "react";
-import NavBar from "components/NavBar";
 import NewsList from "components/NewsList";
-import Footer from "components/Footer";
 import { useLocation } from "react-router-dom";
 import { useFetchNews } from "hooks/useFetchNews";
-import sharedStyles from "styles/shared.module.css";
+import PageLayout from "components/PageLayout";
 
 const New: React.FC = () => {
   const location = useLocation();
@@ -15,11 +13,9 @@ const New: React.FC = () => {
   const [loading, news, error] = useFetchNews({ pageNum, order: "DATE_DESC" });
 
   return (
-    <div className={sharedStyles.homeContainer}>
-      <NavBar />
+    <PageLayout>
       {!loading && !error && <NewsList news={news} currentPage={pageNum} />}
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

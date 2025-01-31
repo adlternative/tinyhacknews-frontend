@@ -1,19 +1,9 @@
 /* srcomponents/Item.css */
 
-.pageContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-top: 8px;
-}
-
 /* Main content area */
 .newsItemContainer {
-  flex: 1;
-  padding: 20px;
-  background-color: rgb(246, 246, 239); /* Updated background color */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  width: 100%;
+  height: 100%;
 }
 
 /* Title and URL container */

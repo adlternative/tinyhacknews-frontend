@@ -13,6 +13,7 @@ import { UserContext } from "contexts/UserContext"; // Import UserContext
 import { toast } from "react-toastify";
 import sharedStyles from "styles/shared.module.css";
 import styles from "./NewsItemPage.module.css";
+import PageLayout from "components/PageLayout";
 
 const NewsItem: React.FC = () => {
   const location = useLocation();
@@ -279,11 +280,7 @@ const NewsItem: React.FC = () => {
   // Determineif the current user is the author
 
   return (
-    <div className={sharedStyles.homeContainer}>
-      {/* NavBar */}
-      <NavBar />
-
-      {/* Main content area */}
+    <PageLayout>
       <div className={styles.newsItemContainer}>
         {userLoading || loadingNews ? (
           <div className={styles.loading}>Loading news content...</div>
@@ -402,10 +399,7 @@ const NewsItem: React.FC = () => {
           </>
         ) : null}
       </div>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 
