@@ -53,3 +53,7 @@
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
 }
+
+.loginContainer h1 {
+  margin-bottom: 20px;
+}

@@ -6,6 +6,8 @@ import shardStyles from "styles/shared.module.css";
 import styles from "./RegisterPage.module.css";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
+import axios from "axios";
+import { RegisterUserInfoResponse } from "types/types";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ const Register: React.FC = () => {
   });
 
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,23 +36,28 @@ const Register: React.FC = () => {
       email: formData.email,
     };
 
-    try {
-      const response = await axiosInstance.post("/api/v1/users", userData, {
+    axiosInstance
+      .post("/api/v1/users", userData, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: false,
+      })
+      .then((response) => {
+        const userInfo: RegisterUserInfoResponse = response.data;
+        toast.success(`Register Successful, ${userInfo.name}`);
+        navigate("/login");
+      })
+      .catch((err) => {
+        // 根据不同的错误类型设置错误信息
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data || err.message);
+          toast.error(`Login failed: ${error}`);
+        } else {
+          setError("An unexpected error occurred");
+          toast.error("Login failed");
+        }
       });
-
-      console.log("Success:", response.data);
-      // 处理成功响应
-      // 注册成功后跳转到登录页面
-      navigate("/login");
-    } catch (error) {
-      toast.error("Error:" + error);
-      // 处理错误
-    }
-    // You can add your form submission logic here
   };
 
   return (

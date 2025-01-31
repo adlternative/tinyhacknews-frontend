@@ -21,6 +21,14 @@ export interface UserInfo {
   karma: number;
 }
 
+export interface RegisterUserInfoResponse {
+  id: number;
+  name: string;
+  email: string;
+  about: string;
+  createdAt: string;
+}
+
 // 简化的用户信息
 export interface AuthorMeta {
   id: number;

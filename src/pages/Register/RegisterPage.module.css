@@ -53,3 +53,7 @@
   flex-direction: column;
   height: 100vh; /* 占满整个视口高度 */
 }
+
+.registerContainer h1 {
+  margin-bottom: 20px;
+}

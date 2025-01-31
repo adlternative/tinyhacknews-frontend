@@ -8,6 +8,7 @@ import shardStyles from "styles/shared.module.css";
 import styles from "./LoginPage.module.css";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
+import axios from "axios";
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -24,28 +25,39 @@ const Login: React.FC = () => {
       [name]: value,
     }));
   };
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await axiosInstance.post("/api/v1/users/login", credentials, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: false,
-      });
+      await axiosInstance.post(
+        "/api/v1/users/login",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: false,
+        }
+      );
 
       toast.success("Login Successful!");
-      // 登录成功后跳转到首页
 
       // 解析 JWT 获取用户名
       const fetchedUsername = await GetUsernameFromJwt();
       setUsername(fetchedUsername); // 更新 UserContext
 
+      // 登录成功后跳转到首页
       navigate("/");
-    } catch (error) {
-      toast.error("Login Failed!");
+    } catch (err) {
+      // 根据不同的错误类型设置错误信息
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data || err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
+      toast.error(`Login failed: ${error}`);
     }
   };
 
