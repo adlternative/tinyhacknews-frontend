@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import NavBar from 'components/NavBar';
-import axios from "axios";
+import NavBar from "components/NavBar";
+import axiosInstance from "utils/AxiosInstance";
+import { useNavigate } from "react-router-dom"; // 确保你已经安装并设置了 react-router-dom
 import { toast } from "react-toastify";
 import shardStyles from "styles/shared.module.css";
 import styles from "./SubmitPage.module.css";
+import { News } from "types/types";
+import axios from "axios";
 
 const Submit: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -11,45 +14,40 @@ const Submit: React.FC = () => {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(false);
 
     const data = { title, url, text };
 
-    axios
-      .post("/api/v1/news", data, {
+    axiosInstance
+      .post<News>("/api/v1/news", data, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       })
       .then((response) => {
-        setTitle("");
-        setUrl("");
-        setText("");
-        setSuccess(true);
-        console.log("Submit success:", response.data);
+        toast.success("Submit News success");
+        navigate(`/item?id=${response.data.id}`);
       })
-      .catch((error) => {
-        toast.error("Submit failed:" + error);
+      .catch((err) => {
         // 根据不同的错误类型设置错误信息
-        if (error.response) {
-          // 服务器返回了状态码
-          setError(error.response.data.message || "Submit failed");
-        } else if (error.request) {
-          // 请求已发出但未收到响应
-          setError("Network error, please try again later");
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data || err.message);
+          toast.error(`Submit failed: ${error}`);
         } else {
-          // 其他错误
-          setError(error.message || "提交失败");
+          setError("An unexpected error occurred");
+          toast.error("Submit failed");
         }
       })
       .finally(() => {
+        setTitle("");
+        setUrl("");
+        setText("");
         setLoading(false);
       });
   };
@@ -90,7 +88,11 @@ const Submit: React.FC = () => {
           onChange={(e) => setText(e.target.value)}
         ></textarea>
 
-        <button className={styles.submitNewsButton} type="submit" disabled={loading}>
+        <button
+          className={styles.submitNewsButton}
+          type="submit"
+          disabled={loading}
+        >
           {loading ? "Submiting..." : "Submit"}
         </button>
 
