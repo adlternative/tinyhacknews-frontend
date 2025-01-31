@@ -94,21 +94,23 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
             </div>
             <div className={styles.newsContent}>
               <a
-                href={item.url}
+                href={item.url.length > 0 ? item.url : `/item?id=${item.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.newsListTitleLink}
               >
                 <h2 className={styles.newsListItemTitle}>{item.title}</h2>
               </a>
-              <a
-                className={styles.newsListItemLink}
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {`(` + GetPureURI(item.url) + `)`}
-              </a>
+              {item.url.length > 0 && (
+                <a
+                  className={styles.newsListItemLink}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {`(` + GetPureURI(item.url) + `)`}
+                </a>
+              )}
             </div>
             <div className={styles.newsListItemMeta}>
               <span> {item.pointsCount} points </span>

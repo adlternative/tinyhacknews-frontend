@@ -318,14 +318,16 @@ const NewsItem: React.FC = () => {
                   {news.title}
                 </a>
               </h2>
-              <a
-                href={news.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.newsUrlSmall}
-              >
-                ({GetPureURI(news.url)})
-              </a>
+              {news.url.length > 0 && (
+                <a
+                  href={news.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.newsUrlSmall}
+                >
+                  ({GetPureURI(news.url)})
+                </a>
+              )}
             </div>
 
             {/* Metadata Bar */}
@@ -343,8 +345,7 @@ const NewsItem: React.FC = () => {
               <span className={styles.newsTime}>
                 {RelativeTimeFromISOString(news.createdAt)}
               </span>{" "}
-              <a href="#">past</a> | <a href="#">favorite</a> |
-              <a href="#">
+              <a href="">
                 {news.commentsCount === 0
                   ? "discuss"
                   : news.commentsCount + " comments"}
