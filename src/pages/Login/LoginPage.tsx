@@ -1,14 +1,14 @@
+// src/pages/LoginPage.tsx
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "contexts/UserContext"; // 导入 UserContext
-import GetUsernameFromJwt from "utils/GetUsernameFromJwt"; // 导入解析用户名的工具
+import { UserContext } from "contexts/UserContext";
+import GetUsernameFromJwt from "utils/GetUsernameFromJwt";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
-import shardStyles from "styles/shared.module.css";
-import styles from "./LoginPage.module.css";
-import NavBar from "components/NavBar";
-import Footer from "components/Footer";
 import axios from "axios";
+
+import PageLayout from "components/PageLayout";
+import AuthForm from "components/AuthForm";
 
 const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({
@@ -17,7 +17,9 @@ const Login: React.FC = () => {
   });
 
   const navigate = useNavigate();
-  const { setUsername } = useContext(UserContext); // 使用 UserContext
+  const { setUsername } = useContext(UserContext);
+  const [error, setError] = useState<string | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((prevState) => ({
@@ -25,7 +27,6 @@ const Login: React.FC = () => {
       [name]: value,
     }));
   };
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +34,10 @@ const Login: React.FC = () => {
     try {
       await axiosInstance.post(
         "/api/v1/users/login",
-        {},
+        {
+          username: credentials.username,
+          password: credentials.password,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -50,52 +54,44 @@ const Login: React.FC = () => {
 
       // 登录成功后跳转到首页
       navigate("/");
-    } catch (err) {
+    } catch (err: any) {
       // 根据不同的错误类型设置错误信息
       if (axios.isAxiosError(err)) {
         setError(err.response?.data || err.message);
+        toast.error(`Login failed: ${err.response?.data || err.message}`);
       } else {
         setError("An unexpected error occurred");
+        toast.error("Login failed: An unexpected error occurred");
       }
-      toast.error(`Login failed: ${error}`);
     }
   };
 
+  const formFields = [
+    {
+      label: "Username",
+      name: "username",
+      type: "text",
+      value: credentials.username,
+      onChange: handleChange,
+    },
+    {
+      label: "Password",
+      name: "password",
+      type: "password",
+      value: credentials.password,
+      onChange: handleChange,
+    },
+  ];
+
   return (
-    <div className={shardStyles.homeContainer}>
-      <NavBar />
-      <div className={styles.loginContainer}>
-        <h1>Login</h1>
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={credentials.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button className={styles.loginButton} type="submit">
-            Login
-          </button>
-        </form>
-      </div>
-      <Footer />
-    </div>
+    <PageLayout>
+      <AuthForm
+        title="Login"
+        fields={formFields}
+        onSubmit={handleSubmit}
+        buttonLabel="Login"
+      />
+    </PageLayout>
   );
 };
 
