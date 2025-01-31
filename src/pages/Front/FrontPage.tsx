@@ -63,7 +63,7 @@ const FrontPage: React.FC = () => {
   return (
     <div className={sharedStyles.homeContainer}>
       <NavBar />
-      {error && <p className={styles.errorMessage}>Error: {error}</p>}
+      {error && <p className={sharedStyles.errorMessage}>Error: {error}</p>}
       <NewsList news={news} currentPage={pageNum} />
       <Footer />
     </div>
