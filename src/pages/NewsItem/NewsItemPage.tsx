@@ -201,24 +201,20 @@ const NewsItem: React.FC = () => {
           }
         });
 
+        if (!parentCommentId) {
+          toast.success("Add Comment successfully.");
+        } else {
+          toast.success("Add Reply successfully.");
+        }
+      } catch (error) {
+        const err = error as AxiosError;
+        toast.error(`Add Comment failed: ${err.message}`);
+      } finally {
+        setSubmitting(false);
         // 如果是根评论，清空 newComment
         if (!parentCommentId) {
           setNewComment("");
         }
-      } catch (error) {
-        const err = error as AxiosError;
-        toast.error(`error: ${err}`);
-        if (err.response) {
-          throw new Error(
-            `Failed to add comment: ${err.response.status} ${err.response.statusText}`
-          );
-        } else if (err.request) {
-          throw new Error("Failed to add comment: No response from server.");
-        } else {
-          throw new Error(`Failed to add comment: ${err.message}`);
-        }
-      } finally {
-        setSubmitting(false);
       }
     },
     [id]
