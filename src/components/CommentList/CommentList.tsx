@@ -22,6 +22,7 @@ const CommentList: React.FC<Props> = ({ comments, currentPage }) => {
               className={styles.voteButton}
               onClick={() => handleVote(comment.id)}
               aria-label={`Vote for ${comment.text}`}
+              hidden={true}
             >
               <img
                 src="triangle.svg"
