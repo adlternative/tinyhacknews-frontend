@@ -46,10 +46,24 @@ const NavBar: React.FC = () => {
     }
   };
 
+  // 定义右侧导航链接
+  const rightLinks = username
+    ? [
+        {
+          type: "link",
+          label: username,
+          href: `/users?name=${encodeURIComponent(username)}`,
+        },
+        { type: "button", label: "logout", onClick: handleLogout },
+      ]
+    : [
+        { type: "link", label: "login", href: "/login" },
+        { type: "link", label: "register", href: "/register" },
+      ];
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLeft}>
-        {/* 包装图标和标题，使其都可点击跳转到首页 */}
         <a href="/" className={styles.navbarHomeLink}>
           <img src="/y18.svg" alt="Y18N Icon" className={styles.navbarIcon} />
           <span className={styles.navbarTitle}>Tiny Hacker News</span>
@@ -66,24 +80,22 @@ const NavBar: React.FC = () => {
         ))}
       </div>
       <div className={styles.navbarRight}>
-        {username ? (
-          <>
-            <a
-              href={`/users?name=${encodeURIComponent(username)}`}
-              className={styles.navbarUserName}
-            >
-              {username}
-            </a>
-            <span className={styles.navbarSeparator}>|</span>
-            <button className={styles.navbarLogout} onClick={handleLogout}>
-              logout
-            </button>
-          </>
-        ) : (
-          <a href="/login" className={styles.navbarLink}>
-            login
-          </a>
-        )}
+        {rightLinks.map((link, index) => (
+          <React.Fragment key={index}>
+            {link.type === "link" ? (
+              <a href={link.href} className={styles.navbarLink}>
+                {link.label}
+              </a>
+            ) : (
+              <button className={styles.navbarButton} onClick={link.onClick}>
+                {link.label}
+              </button>
+            )}
+            {index !== rightLinks.length - 1 && (
+              <span className={styles.navbarSeparator}>|</span>
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </nav>
   );

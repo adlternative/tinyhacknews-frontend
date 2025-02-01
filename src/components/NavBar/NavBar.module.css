@@ -71,3 +71,19 @@
   text-decoration: none;
   color: inherit;
 }
+
+
+.navbarButton {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+.navbarButton:hover {
+  text-decoration: underline;
+}
