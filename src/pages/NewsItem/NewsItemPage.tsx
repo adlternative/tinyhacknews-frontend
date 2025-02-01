@@ -2,11 +2,9 @@
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import NavBar from "components/NavBar";
-import Footer from "components/Footer";
 import RelativeTimeFromISOString from "utils/RelativeTimeFromISOString";
 import CommentItem from "components/CommentItem";
-import { Comment, News, NewsCommentsResponse } from "types/types";
+import { Comment, News } from "types/types";
 import GetPureURI from "utils/URI";
 import axiosInstance from "utils/AxiosInstance";
 import { UserContext } from "contexts/UserContext"; // Import UserContext
@@ -103,16 +101,13 @@ const NewsItem: React.FC = () => {
     setLoadingComments(true);
     setErrorComments(null);
     try {
-      const response = await axiosInstance.get<NewsCommentsResponse>(
+      const response = await axiosInstance.get<Comment[]>(
         `/api/v1/news/${id}/comments`,
         {
-          params: {
-            page_num: 1,
-            page_size: 200,
-          },
+          withCredentials: true,
         }
       );
-      const fetchedComments = response.data.records;
+      const fetchedComments = response.data;
       const tree = buildTree(fetchedComments);
       setComments(tree);
     } catch (error) {
