@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CommentList from "components/CommentList";
-import NavBar from 'components/NavBar';
-import Footer from "components/Footer";
 import { CommentWithNewsMeta, CommentListResponse } from "types/types";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "utils/AxiosInstance";
 import { toast } from "react-toastify";
 import sharedStyles from "styles/shared.module.css";
+import PageLayout from "components/PageLayout";
 // import styles from "./ThreadsPage.module.css";
 
 const ThreadsPage: React.FC = () => {
@@ -59,12 +58,10 @@ const ThreadsPage: React.FC = () => {
   }, [username]);
 
   return (
-    <div className={sharedStyles.homeContainer}>
-      <NavBar />
+    <PageLayout>
       {error && <p className={sharedStyles.errorMessage}>Error: {error}</p>}
       {!error && <CommentList comments={comments} currentPage={pageNum} />}
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 
