@@ -114,6 +114,7 @@ const NewsList: React.FC<Props> = ({ news, currentPage }) => {
             </div>
             <div className={styles.newsListItemMeta}>
               <span> {item.pointsCount} points </span>
+              <span> by </span>
               <a href={`/users?name=${item.author.name}`}>{item.author.name}</a>
               <span> {RelativeTimeFromISOString(item.updatedAt)} </span>
               {item.hasVote && (
