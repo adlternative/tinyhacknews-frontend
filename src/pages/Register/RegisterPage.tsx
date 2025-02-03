@@ -50,11 +50,10 @@ const Register: React.FC = () => {
       // 根据不同的错误类型设置错误信息
       if (axios.isAxiosError(err)) {
         setError(err.response?.data || err.message);
-        toast.error(`Register failed: ${err.response?.data || err.message}`);
       } else {
         setError("An unexpected error occurred");
-        toast.error("Register failed: An unexpected error occurred");
       }
+      toast.error(`Register failed: ${error}`);
     }
   };
 
